@@ -1,0 +1,2572 @@
+<library name="harfbuzz" basename="HarfbuzzBase" basetype="HarfbuzzLibrary" openname="harfbuzz.library">
+	<include>cairo.h</include>
+	<include>freetype/freetype.h</include>
+	<include>hb.h</include>
+	<include>hb-ft.h</include>
+	<include>hb-aat.h</include>
+	<include>hb-cairo.h</include>
+    <include>hb-subset.h</include>
+    <include>hb-subset-repacker.h</include>
+    
+	<interface name="main" version="1.0" flags="protected" struct="HarfbuzzIFace" global="IHarfbuzz" prefix="_impl_" asmprefix="IHarfbuzz">
+        <method name="Obtain" result="uint32"/>
+        <method name="Release" result="uint32"/>
+        <method name="Expunge" result="void" status="unimplemented"/>
+        <method name="Clone" result="struct Interface *" status="unimplemented"/>
+
+		<method name="hb_aat_layout_get_feature_types" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="feature_count" type="unsigned int *" />
+			<arg name="features" type="hb_aat_layout_feature_type_t *" />
+		</method>
+		<method name="hb_aat_layout_feature_type_get_name_id" result="hb_ot_name_id_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="feature_type" type="hb_aat_layout_feature_type_t" />
+		</method>
+		<method name="hb_aat_layout_feature_type_get_selector_infos" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="feature_type" type="hb_aat_layout_feature_type_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="selector_count" type="unsigned int *" />
+			<arg name="selectors" type="hb_aat_layout_feature_selector_info_t *" />
+			<arg name="default_index" type="unsigned int *" />
+		</method>
+		<method name="hb_aat_layout_has_substitution" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_aat_layout_has_positioning" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_aat_layout_has_tracking" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_blob_create" result="hb_blob_t *">
+			<arg name="data" type="const char *" />
+			<arg name="length" type="unsigned int" />
+			<arg name="mode" type="hb_memory_mode_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_blob_create_or_fail" result="hb_blob_t *">
+			<arg name="data" type="const char *" />
+			<arg name="length" type="unsigned int" />
+			<arg name="mode" type="hb_memory_mode_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_blob_create_from_file" result="hb_blob_t *">
+			<arg name="file_name" type="const char *" />
+		</method>
+		<method name="hb_blob_create_from_file_or_fail" result="hb_blob_t *">
+			<arg name="file_name" type="const char *" />
+		</method>
+		<method name="hb_blob_create_sub_blob" result="hb_blob_t *">
+			<arg name="parent" type="hb_blob_t *" />
+			<arg name="offset" type="unsigned int" />
+			<arg name="length" type="unsigned int" />
+		</method>
+		<method name="hb_blob_copy_writable_or_fail" result="hb_blob_t *">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_blob_get_empty" result="hb_blob_t *" />
+		<method name="hb_blob_reference" result="hb_blob_t *">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_blob_destroy" result="void">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_blob_set_user_data" result="hb_bool_t">
+			<arg name="blob" type="hb_blob_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_blob_get_user_data" result="void *">
+			<arg name="blob" type="const hb_blob_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_blob_make_immutable" result="void">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_blob_is_immutable" result="hb_bool_t">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_blob_get_length" result="unsigned int">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_blob_get_data" result="const char *">
+			<arg name="blob" type="hb_blob_t *" />
+			<arg name="length" type="unsigned int *" />
+		</method>
+		<method name="hb_blob_get_data_writable" result="char *">
+			<arg name="blob" type="hb_blob_t *" />
+			<arg name="length" type="unsigned int *" />
+		</method>
+		<method name="hb_glyph_info_get_glyph_flags" result="hb_glyph_flags_t">
+			<arg name="info" type="const hb_glyph_info_t *" />
+		</method>
+		<method name="hb_segment_properties_equal" result="hb_bool_t">
+			<arg name="a" type="const hb_segment_properties_t *" />
+			<arg name="b" type="const hb_segment_properties_t *" />
+		</method>
+		<method name="hb_segment_properties_hash" result="unsigned int">
+			<arg name="p" type="const hb_segment_properties_t *" />
+		</method>
+		<method name="hb_segment_properties_overlay" result="void">
+			<arg name="p" type="hb_segment_properties_t *" />
+			<arg name="src" type="const hb_segment_properties_t *" />
+		</method>
+		<method name="hb_buffer_create" result="hb_buffer_t *" />
+		<method name="hb_buffer_create_similar" result="hb_buffer_t *">
+			<arg name="src" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_reset" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_get_empty" result="hb_buffer_t *" />
+		<method name="hb_buffer_reference" result="hb_buffer_t *">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_destroy" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_user_data" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_buffer_get_user_data" result="void *">
+			<arg name="buffer" type="const hb_buffer_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_buffer_set_content_type" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="content_type" type="hb_buffer_content_type_t" />
+		</method>
+		<method name="hb_buffer_get_content_type" result="hb_buffer_content_type_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_unicode_funcs" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="unicode_funcs" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_buffer_get_unicode_funcs" result="hb_unicode_funcs_t *">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_direction" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="direction" type="hb_direction_t" />
+		</method>
+		<method name="hb_buffer_get_direction" result="hb_direction_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_script" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="script" type="hb_script_t" />
+		</method>
+		<method name="hb_buffer_get_script" result="hb_script_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_language" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="language" type="hb_language_t" />
+		</method>
+		<method name="hb_buffer_get_language" result="hb_language_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_segment_properties" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="props" type="const hb_segment_properties_t *" />
+		</method>
+		<method name="hb_buffer_get_segment_properties" result="void">
+			<arg name="buffer" type="const hb_buffer_t *" />
+			<arg name="props" type="hb_segment_properties_t *" />
+		</method>
+		<method name="hb_buffer_guess_segment_properties" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_flags" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="flags" type="hb_buffer_flags_t" />
+		</method>
+		<method name="hb_buffer_get_flags" result="hb_buffer_flags_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_cluster_level" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="cluster_level" type="hb_buffer_cluster_level_t" />
+		</method>
+		<method name="hb_buffer_get_cluster_level" result="hb_buffer_cluster_level_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_replacement_codepoint" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="replacement" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_buffer_get_replacement_codepoint" result="hb_codepoint_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_invisible_glyph" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="invisible" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_buffer_get_invisible_glyph" result="hb_codepoint_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_not_found_glyph" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="not_found" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_buffer_get_not_found_glyph" result="hb_codepoint_t">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_set_random_state" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="state" type="unsigned" />
+		</method>
+		<method name="hb_buffer_get_random_state" result="unsigned">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_clear_contents" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_pre_allocate" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="size" type="unsigned int" />
+		</method>
+		<method name="hb_buffer_allocation_successful" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_reverse" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_reverse_range" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="start" type="unsigned int" />
+			<arg name="end" type="unsigned int" />
+		</method>
+		<method name="hb_buffer_reverse_clusters" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_add" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="codepoint" type="hb_codepoint_t" />
+			<arg name="cluster" type="unsigned int" />
+		</method>
+		<method name="hb_buffer_add_utf8" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="text" type="const char *" />
+			<arg name="text_length" type="int" />
+			<arg name="item_offset" type="unsigned int" />
+			<arg name="item_length" type="int" />
+		</method>
+		<method name="hb_buffer_add_utf16" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="text" type="const uint16_t *" />
+			<arg name="text_length" type="int" />
+			<arg name="item_offset" type="unsigned int" />
+			<arg name="item_length" type="int" />
+		</method>
+		<method name="hb_buffer_add_utf32" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="text" type="const uint32_t *" />
+			<arg name="text_length" type="int" />
+			<arg name="item_offset" type="unsigned int" />
+			<arg name="item_length" type="int" />
+		</method>
+		<method name="hb_buffer_add_latin1" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="text" type="const uint8_t *" />
+			<arg name="text_length" type="int" />
+			<arg name="item_offset" type="unsigned int" />
+			<arg name="item_length" type="int" />
+		</method>
+		<method name="hb_buffer_add_codepoints" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="text" type="const hb_codepoint_t *" />
+			<arg name="text_length" type="int" />
+			<arg name="item_offset" type="unsigned int" />
+			<arg name="item_length" type="int" />
+		</method>
+		<method name="hb_buffer_append" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="source" type="const hb_buffer_t *" />
+			<arg name="start" type="unsigned int" />
+			<arg name="end" type="unsigned int" />
+		</method>
+		<method name="hb_buffer_set_length" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="length" type="unsigned int" />
+		</method>
+		<method name="hb_buffer_get_length" result="unsigned int">
+			<arg name="buffer" type="const hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_get_glyph_infos" result="hb_glyph_info_t *">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="length" type="unsigned int *" />
+		</method>
+		<method name="hb_buffer_get_glyph_positions" result="hb_glyph_position_t *">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="length" type="unsigned int *" />
+		</method>
+		<method name="hb_buffer_has_positions" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_normalize_glyphs" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+		</method>
+		<method name="hb_buffer_serialize_format_from_string" result="hb_buffer_serialize_format_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+		</method>
+		<method name="hb_buffer_serialize_format_to_string" result="const char *">
+			<arg name="format" type="hb_buffer_serialize_format_t" />
+		</method>
+		<method name="hb_buffer_serialize_list_formats" result="const char **" />
+		<method name="hb_buffer_serialize_glyphs" result="unsigned int">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="start" type="unsigned int" />
+			<arg name="end" type="unsigned int" />
+			<arg name="buf" type="char *" />
+			<arg name="buf_size" type="unsigned int" />
+			<arg name="buf_consumed" type="unsigned int *" />
+			<arg name="font" type="hb_font_t *" />
+			<arg name="format" type="hb_buffer_serialize_format_t" />
+			<arg name="flags" type="hb_buffer_serialize_flags_t" />
+		</method>
+		<method name="hb_buffer_serialize_unicode" result="unsigned int">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="start" type="unsigned int" />
+			<arg name="end" type="unsigned int" />
+			<arg name="buf" type="char *" />
+			<arg name="buf_size" type="unsigned int" />
+			<arg name="buf_consumed" type="unsigned int *" />
+			<arg name="format" type="hb_buffer_serialize_format_t" />
+			<arg name="flags" type="hb_buffer_serialize_flags_t" />
+		</method>
+		<method name="hb_buffer_serialize" result="unsigned int">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="start" type="unsigned int" />
+			<arg name="end" type="unsigned int" />
+			<arg name="buf" type="char *" />
+			<arg name="buf_size" type="unsigned int" />
+			<arg name="buf_consumed" type="unsigned int *" />
+			<arg name="font" type="hb_font_t *" />
+			<arg name="format" type="hb_buffer_serialize_format_t" />
+			<arg name="flags" type="hb_buffer_serialize_flags_t" />
+		</method>
+		<method name="hb_buffer_deserialize_glyphs" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="buf" type="const char *" />
+			<arg name="buf_len" type="int" />
+			<arg name="*end_ptr" type="const char *" />
+			<arg name="font" type="hb_font_t *" />
+			<arg name="format" type="hb_buffer_serialize_format_t" />
+		</method>
+		<method name="hb_buffer_deserialize_unicode" result="hb_bool_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="buf" type="const char *" />
+			<arg name="buf_len" type="int" />
+			<arg name="*end_ptr" type="const char *" />
+			<arg name="format" type="hb_buffer_serialize_format_t" />
+		</method>
+		<method name="hb_buffer_diff" result="hb_buffer_diff_flags_t">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="reference" type="hb_buffer_t *" />
+			<arg name="dottedcircle_glyph" type="hb_codepoint_t" />
+			<arg name="position_fuzz" type="unsigned int" />
+		</method>
+		<method name="hb_buffer_set_message_func" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="func" type="hb_buffer_message_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_cairo_font_face_create_for_font" result="cairo_font_face_t *">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_cairo_font_face_get_font" result="hb_font_t *">
+			<arg name="font_face" type="cairo_font_face_t *" />
+		</method>
+		<method name="hb_cairo_font_face_create_for_face" result="cairo_font_face_t *">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_cairo_font_face_get_face" result="hb_face_t *">
+			<arg name="font_face" type="cairo_font_face_t *" />
+		</method>
+		<method name="hb_cairo_font_face_set_font_init_func" result="void">
+			<arg name="font_face" type="cairo_font_face_t *" />
+			<arg name="func" type="hb_cairo_font_init_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_cairo_scaled_font_get_font" result="hb_font_t *">
+			<arg name="scaled_font" type="cairo_scaled_font_t *" />
+		</method>
+		<method name="hb_cairo_font_face_set_scale_factor" result="void">
+			<arg name="font_face" type="cairo_font_face_t *" />
+			<arg name="scale_factor" type="unsigned int" />
+		</method>
+		<method name="hb_cairo_font_face_get_scale_factor" result="unsigned int">
+			<arg name="font_face" type="cairo_font_face_t *" />
+		</method>
+		<method name="hb_cairo_glyphs_from_buffer" result="void">
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="utf8_clusters" type="hb_bool_t" />
+			<arg name="x_scale_factor" type="double" />
+			<arg name="y_scale_factor" type="double" />
+			<arg name="x" type="double" />
+			<arg name="y" type="double" />
+			<arg name="utf8" type="const char *" />
+			<arg name="utf8_len" type="int" />
+			<arg name="*glyphs" type="cairo_glyph_t *" />
+			<arg name="num_glyphs" type="unsigned int *" />
+			<arg name="*clusters" type="cairo_text_cluster_t *" />
+			<arg name="num_clusters" type="unsigned int *" />
+			<arg name="cluster_flags" type="cairo_text_cluster_flags_t *" />
+		</method>
+		<method name="hb_tag_from_string" result="hb_tag_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+		</method>
+		<method name="hb_tag_to_string" result="void">
+			<arg name="tag" type="hb_tag_t" />
+			<arg name="buf" type="char *" />
+		</method>
+		<method name="hb_direction_from_string" result="hb_direction_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+		</method>
+		<method name="hb_direction_to_string" result="const char *">
+			<arg name="direction" type="hb_direction_t" />
+		</method>
+		<method name="hb_language_from_string" result="hb_language_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+		</method>
+		<method name="hb_language_to_string" result="const char *">
+			<arg name="language" type="hb_language_t" />
+		</method>
+		<method name="hb_language_get_default" result="hb_language_t" />
+		<method name="hb_language_matches" result="hb_bool_t">
+			<arg name="language" type="hb_language_t" />
+			<arg name="specific" type="hb_language_t" />
+		</method>
+		<method name="hb_script_from_iso15924_tag" result="hb_script_t">
+			<arg name="tag" type="hb_tag_t" />
+		</method>
+		<method name="hb_script_from_string" result="hb_script_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+		</method>
+		<method name="hb_script_to_iso15924_tag" result="hb_tag_t">
+			<arg name="script" type="hb_script_t" />
+		</method>
+		<method name="hb_script_get_horizontal_direction" result="hb_direction_t">
+			<arg name="script" type="hb_script_t" />
+		</method>
+		<method name="hb_feature_from_string" result="hb_bool_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+			<arg name="feature" type="hb_feature_t *" />
+		</method>
+		<method name="hb_feature_to_string" result="void">
+			<arg name="feature" type="hb_feature_t *" />
+			<arg name="buf" type="char *" />
+			<arg name="size" type="unsigned int" />
+		</method>
+		<method name="hb_variation_from_string" result="hb_bool_t">
+			<arg name="str" type="const char *" />
+			<arg name="len" type="int" />
+			<arg name="variation" type="hb_variation_t *" />
+		</method>
+		<method name="hb_variation_to_string" result="void">
+			<arg name="variation" type="hb_variation_t *" />
+			<arg name="buf" type="char *" />
+			<arg name="size" type="unsigned int" />
+		</method>
+		<method name="hb_color_get_alpha" result="uint8_t">
+			<arg name="color" type="hb_color_t" />
+		</method>
+		<method name="hb_color_get_red" result="uint8_t">
+			<arg name="color" type="hb_color_t" />
+		</method>
+		<method name="hb_color_get_green" result="uint8_t">
+			<arg name="color" type="hb_color_t" />
+		</method>
+		<method name="hb_color_get_blue" result="uint8_t">
+			<arg name="color" type="hb_color_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_eastasian_width_func" result="HB_DEPRECATED void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_eastasian_width_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_eastasian_width" result="HB_DEPRECATED unsigned int">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_decompose_compatibility_func" result="HB_DEPRECATED void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_decompose_compatibility_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_decompose_compatibility" result="HB_DEPRECATED unsigned int">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="u" type="hb_codepoint_t" />
+			<arg name="decomposed" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_v_kerning_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_v_kerning_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_get_glyph_v_kerning" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="top_glyph" type="hb_codepoint_t" />
+			<arg name="bottom_glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_shape_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_shape_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_get_glyph_shape" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+		</method>
+		<method name="hb_draw_funcs_set_move_to_func" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="func" type="hb_draw_move_to_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_draw_funcs_set_line_to_func" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="func" type="hb_draw_line_to_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_draw_funcs_set_quadratic_to_func" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="func" type="hb_draw_quadratic_to_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_draw_funcs_set_cubic_to_func" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="func" type="hb_draw_cubic_to_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_draw_funcs_set_close_path_func" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="func" type="hb_draw_close_path_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_draw_funcs_create" result="hb_draw_funcs_t *" />
+		<method name="hb_draw_funcs_get_empty" result="hb_draw_funcs_t *" />
+		<method name="hb_draw_funcs_reference" result="hb_draw_funcs_t *">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+		</method>
+		<method name="hb_draw_funcs_destroy" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+		</method>
+		<method name="hb_draw_funcs_set_user_data" result="hb_bool_t">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_draw_funcs_get_user_data" result="void *">
+			<arg name="dfuncs" type="const hb_draw_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_draw_funcs_make_immutable" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+		</method>
+		<method name="hb_draw_funcs_is_immutable" result="hb_bool_t">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+		</method>
+		<method name="hb_draw_move_to" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+			<arg name="st" type="hb_draw_state_t *" />
+			<arg name="to_x" type="float" />
+			<arg name="to_y" type="float" />
+		</method>
+		<method name="hb_draw_line_to" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+			<arg name="st" type="hb_draw_state_t *" />
+			<arg name="to_x" type="float" />
+			<arg name="to_y" type="float" />
+		</method>
+		<method name="hb_draw_quadratic_to" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+			<arg name="st" type="hb_draw_state_t *" />
+			<arg name="control_x" type="float" />
+			<arg name="control_y" type="float" />
+			<arg name="to_x" type="float" />
+			<arg name="to_y" type="float" />
+		</method>
+		<method name="hb_draw_cubic_to" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+			<arg name="st" type="hb_draw_state_t *" />
+			<arg name="control1_x" type="float" />
+			<arg name="control1_y" type="float" />
+			<arg name="control2_x" type="float" />
+			<arg name="control2_y" type="float" />
+			<arg name="to_x" type="float" />
+			<arg name="to_y" type="float" />
+		</method>
+		<method name="hb_draw_close_path" result="void">
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+			<arg name="st" type="hb_draw_state_t *" />
+		</method>
+		<method name="hb_face_count" result="unsigned int">
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_face_create" result="hb_face_t *">
+			<arg name="blob" type="hb_blob_t *" />
+			<arg name="index" type="unsigned int" />
+		</method>
+		<method name="hb_face_create_for_tables" result="hb_face_t *">
+			<arg name="reference_table_func" type="hb_reference_table_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_face_get_empty" result="hb_face_t *" />
+		<method name="hb_face_reference" result="hb_face_t *">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_face_destroy" result="void">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_face_set_user_data" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_face_get_user_data" result="void *">
+			<arg name="face" type="const hb_face_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_face_make_immutable" result="void">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_face_is_immutable" result="hb_bool_t">
+			<arg name="face" type="const hb_face_t *" />
+		</method>
+		<method name="hb_face_reference_table" result="hb_blob_t *">
+			<arg name="face" type="const hb_face_t *" />
+			<arg name="tag" type="hb_tag_t" />
+		</method>
+		<method name="hb_face_reference_blob" result="hb_blob_t *">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_face_set_index" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="index" type="unsigned int" />
+		</method>
+		<method name="hb_face_get_index" result="unsigned int">
+			<arg name="face" type="const hb_face_t *" />
+		</method>
+		<method name="hb_face_set_upem" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="upem" type="unsigned int" />
+		</method>
+		<method name="hb_face_get_upem" result="unsigned int">
+			<arg name="face" type="const hb_face_t *" />
+		</method>
+		<method name="hb_face_set_glyph_count" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph_count" type="unsigned int" />
+		</method>
+		<method name="hb_face_get_glyph_count" result="unsigned int">
+			<arg name="face" type="const hb_face_t *" />
+		</method>
+		<method name="hb_face_get_table_tags" result="unsigned int">
+			<arg name="face" type="const hb_face_t *" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="table_count" type="unsigned int *" />
+			<arg name="table_tags" type="hb_tag_t *" />
+		</method>
+		<method name="hb_face_collect_unicodes" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="out" type="hb_set_t *" />
+		</method>
+		<method name="hb_face_collect_nominal_glyph_mapping" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="mapping" type="hb_map_t *" />
+			<arg name="unicodes" type="hb_set_t *" />
+		</method>
+		<method name="hb_face_collect_variation_selectors" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="out" type="hb_set_t *" />
+		</method>
+		<method name="hb_face_collect_variation_unicodes" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="variation_selector" type="hb_codepoint_t" />
+			<arg name="out" type="hb_set_t *" />
+		</method>
+		<method name="hb_face_builder_create" result="hb_face_t *" />
+		<method name="hb_face_builder_add_table" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="tag" type="hb_tag_t" />
+			<arg name="blob" type="hb_blob_t *" />
+		</method>
+		<method name="hb_face_builder_sort_tables" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="tags" type="const hb_tag_t *" />
+		</method>
+		<method name="hb_font_funcs_create" result="hb_font_funcs_t *" />
+		<method name="hb_font_funcs_get_empty" result="hb_font_funcs_t *" />
+		<method name="hb_font_funcs_reference" result="hb_font_funcs_t *">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+		</method>
+		<method name="hb_font_funcs_destroy" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+		</method>
+		<method name="hb_font_funcs_set_user_data" result="hb_bool_t">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_font_funcs_get_user_data" result="void *">
+			<arg name="ffuncs" type="const hb_font_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_font_funcs_make_immutable" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+		</method>
+		<method name="hb_font_funcs_is_immutable" result="hb_bool_t">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+		</method>
+		<method name="hb_font_funcs_set_font_h_extents_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_font_h_extents_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_font_v_extents_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_font_v_extents_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_nominal_glyph_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_nominal_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_nominal_glyphs_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_nominal_glyphs_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_variation_glyph_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_variation_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_h_advance_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_h_advance_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_v_advance_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_v_advance_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_h_advances_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_h_advances_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_v_advances_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_v_advances_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_h_origin_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_h_origin_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_v_origin_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_v_origin_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_h_kerning_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_h_kerning_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_extents_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_extents_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_contour_point_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_contour_point_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_name_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_name_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_glyph_from_name_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_get_glyph_from_name_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_draw_glyph_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_draw_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_funcs_set_paint_glyph_func" result="void">
+			<arg name="ffuncs" type="hb_font_funcs_t *" />
+			<arg name="func" type="hb_font_paint_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_get_h_extents" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="extents" type="hb_font_extents_t *" />
+		</method>
+		<method name="hb_font_get_v_extents" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="extents" type="hb_font_extents_t *" />
+		</method>
+		<method name="hb_font_get_nominal_glyph" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+			<arg name="glyph" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_font_get_variation_glyph" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+			<arg name="variation_selector" type="hb_codepoint_t" />
+			<arg name="glyph" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_font_get_nominal_glyphs" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="count" type="unsigned int" />
+			<arg name="first_unicode" type="const hb_codepoint_t *" />
+			<arg name="unicode_stride" type="unsigned int" />
+			<arg name="first_glyph" type="hb_codepoint_t *" />
+			<arg name="glyph_stride" type="unsigned int" />
+		</method>
+		<method name="hb_font_get_glyph_h_advance" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_font_get_glyph_v_advance" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_font_get_glyph_h_advances" result="void">
+			<arg name="font" type="hb_font_t*" />
+			<arg name="count" type="unsigned int" />
+			<arg name="first_glyph" type="const hb_codepoint_t *" />
+			<arg name="glyph_stride" type="unsigned" />
+			<arg name="first_advance" type="hb_position_t *" />
+			<arg name="advance_stride" type="unsigned" />
+		</method>
+		<method name="hb_font_get_glyph_v_advances" result="void">
+			<arg name="font" type="hb_font_t*" />
+			<arg name="count" type="unsigned int" />
+			<arg name="first_glyph" type="const hb_codepoint_t *" />
+			<arg name="glyph_stride" type="unsigned" />
+			<arg name="first_advance" type="hb_position_t *" />
+			<arg name="advance_stride" type="unsigned" />
+		</method>
+		<method name="hb_font_get_glyph_h_origin" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_get_glyph_v_origin" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_get_glyph_h_kerning" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="left_glyph" type="hb_codepoint_t" />
+			<arg name="right_glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_font_get_glyph_extents" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="extents" type="hb_glyph_extents_t *" />
+		</method>
+		<method name="hb_font_get_glyph_contour_point" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="point_index" type="unsigned int" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_get_glyph_name" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="name" type="char *" />
+			<arg name="size" type="unsigned int" />
+		</method>
+		<method name="hb_font_get_glyph_from_name" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="name" type="const char *" />
+			<arg name="len" type="int" />
+			<arg name="glyph" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_font_draw_glyph" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="dfuncs" type="hb_draw_funcs_t *" />
+			<arg name="draw_data" type="void *" />
+		</method>
+		<method name="hb_font_paint_glyph" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="pfuncs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="palette_index" type="unsigned int" />
+			<arg name="foreground" type="hb_color_t" />
+		</method>
+		<method name="hb_font_get_glyph" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+			<arg name="variation_selector" type="hb_codepoint_t" />
+			<arg name="glyph" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_font_get_extents_for_direction" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="extents" type="hb_font_extents_t *" />
+		</method>
+		<method name="hb_font_get_glyph_advance_for_direction" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_get_glyph_advances_for_direction" result="void">
+			<arg name="font" type="hb_font_t*" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="count" type="unsigned int" />
+			<arg name="first_glyph" type="const hb_codepoint_t *" />
+			<arg name="glyph_stride" type="unsigned" />
+			<arg name="first_advance" type="hb_position_t *" />
+			<arg name="advance_stride" type="unsigned" />
+		</method>
+		<method name="hb_font_get_glyph_origin_for_direction" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_add_glyph_origin_for_direction" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_subtract_glyph_origin_for_direction" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_get_glyph_kerning_for_direction" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="first_glyph" type="hb_codepoint_t" />
+			<arg name="second_glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_get_glyph_extents_for_origin" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="extents" type="hb_glyph_extents_t *" />
+		</method>
+		<method name="hb_font_get_glyph_contour_point_for_origin" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="point_index" type="unsigned int" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="x" type="hb_position_t *" />
+			<arg name="y" type="hb_position_t *" />
+		</method>
+		<method name="hb_font_glyph_to_string" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="s" type="char *" />
+			<arg name="size" type="unsigned int" />
+		</method>
+		<method name="hb_font_glyph_from_string" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="s" type="const char *" />
+			<arg name="len" type="int" />
+			<arg name="glyph" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_font_create" result="hb_font_t *">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_font_create_sub_font" result="hb_font_t *">
+			<arg name="parent" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_get_empty" result="hb_font_t *" />
+		<method name="hb_font_reference" result="hb_font_t *">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_destroy" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_set_user_data" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_font_get_user_data" result="void *">
+			<arg name="font" type="const hb_font_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_font_make_immutable" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_is_immutable" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_get_serial" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_changed" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_set_parent" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="parent" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_get_parent" result="hb_font_t *">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_set_face" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_font_get_face" result="hb_face_t *">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_set_funcs" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="klass" type="hb_font_funcs_t *" />
+			<arg name="font_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_set_funcs_data" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="font_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_font_set_scale" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="x_scale" type="int" />
+			<arg name="y_scale" type="int" />
+		</method>
+		<method name="hb_font_get_scale" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="x_scale" type="int *" />
+			<arg name="y_scale" type="int *" />
+		</method>
+		<method name="hb_font_set_ppem" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="x_ppem" type="unsigned int" />
+			<arg name="y_ppem" type="unsigned int" />
+		</method>
+		<method name="hb_font_get_ppem" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="x_ppem" type="unsigned int *" />
+			<arg name="y_ppem" type="unsigned int *" />
+		</method>
+		<method name="hb_font_set_ptem" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="ptem" type="float" />
+		</method>
+		<method name="hb_font_get_ptem" result="float">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_set_synthetic_bold" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="x_embolden" type="float" />
+			<arg name="y_embolden" type="float" />
+			<arg name="in_place" type="hb_bool_t" />
+		</method>
+		<method name="hb_font_get_synthetic_bold" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="x_embolden" type="float *" />
+			<arg name="y_embolden" type="float *" />
+			<arg name="in_place" type="hb_bool_t *" />
+		</method>
+		<method name="hb_font_set_synthetic_slant" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="slant" type="float" />
+		</method>
+		<method name="hb_font_get_synthetic_slant" result="float">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_font_set_variations" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="variations" type="const hb_variation_t *" />
+			<arg name="variations_length" type="unsigned int" />
+		</method>
+		<method name="hb_font_set_variation" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="tag" type="hb_tag_t" />
+			<arg name="value" type="float" />
+		</method>
+		<method name="hb_font_set_var_coords_design" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="coords" type="const float *" />
+			<arg name="coords_length" type="unsigned int" />
+		</method>
+		<method name="hb_font_get_var_coords_design" result="const float *">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="length" type="unsigned int *" />
+		</method>
+		<method name="hb_font_set_var_coords_normalized" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="coords" type="const int *" />
+			<arg name="coords_length" type="unsigned int" />
+		</method>
+		<method name="hb_font_get_var_coords_normalized" result="const int *">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="length" type="unsigned int *" />
+		</method>
+		<method name="hb_font_set_var_named_instance" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="instance_index" type="unsigned int" />
+		</method>
+		<method name="hb_font_get_var_named_instance" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_face_create" result="hb_face_t *">
+			<arg name="ft_face" type="FT_Face" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_ft_face_create_cached" result="hb_face_t *">
+			<arg name="ft_face" type="FT_Face" />
+		</method>
+		<method name="hb_ft_face_create_referenced" result="hb_face_t *">
+			<arg name="ft_face" type="FT_Face" />
+		</method>
+		<method name="hb_ft_font_create" result="hb_font_t *">
+			<arg name="ft_face" type="FT_Face" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_ft_font_create_referenced" result="hb_font_t *">
+			<arg name="ft_face" type="FT_Face" />
+		</method>
+		<method name="hb_ft_font_get_face" result="FT_Face">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_font_lock_face" result="FT_Face">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_font_unlock_face" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_font_set_load_flags" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="load_flags" type="int" />
+		</method>
+		<method name="hb_ft_font_get_load_flags" result="int">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_font_changed" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_hb_font_changed" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ft_font_set_funcs" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_map_create" result="hb_map_t *" />
+		<method name="hb_map_get_empty" result="hb_map_t *" />
+		<method name="hb_map_reference" result="hb_map_t *">
+			<arg name="map" type="hb_map_t *" />
+		</method>
+		<method name="hb_map_destroy" result="void">
+			<arg name="map" type="hb_map_t *" />
+		</method>
+		<method name="hb_map_set_user_data" result="hb_bool_t">
+			<arg name="map" type="hb_map_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_map_get_user_data" result="void *">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_map_allocation_successful" result="hb_bool_t">
+			<arg name="map" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_copy" result="hb_map_t *">
+			<arg name="map" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_clear" result="void">
+			<arg name="map" type="hb_map_t *" />
+		</method>
+		<method name="hb_map_is_empty" result="hb_bool_t">
+			<arg name="map" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_get_population" result="unsigned int">
+			<arg name="map" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_is_equal" result="hb_bool_t">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="other" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_hash" result="unsigned int">
+			<arg name="map" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_set" result="void">
+			<arg name="map" type="hb_map_t *" />
+			<arg name="key" type="hb_codepoint_t" />
+			<arg name="value" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_map_get" result="hb_codepoint_t">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="key" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_map_del" result="void">
+			<arg name="map" type="hb_map_t *" />
+			<arg name="key" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_map_has" result="hb_bool_t">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="key" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_map_update" result="void">
+			<arg name="map" type="hb_map_t *" />
+			<arg name="other" type="const hb_map_t *" />
+		</method>
+		<method name="hb_map_next" result="hb_bool_t">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="idx" type="int *" />
+			<arg name="key" type="hb_codepoint_t *" />
+			<arg name="value" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_map_keys" result="void">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="keys" type="hb_set_t *" />
+		</method>
+		<method name="hb_map_values" result="void">
+			<arg name="map" type="const hb_map_t *" />
+			<arg name="values" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_color_has_palettes" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_color_palette_get_count" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_color_palette_get_name_id" result="hb_ot_name_id_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="palette_index" type="unsigned int" />
+		</method>
+		<method name="hb_ot_color_palette_color_get_name_id" result="hb_ot_name_id_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="color_index" type="unsigned int" />
+		</method>
+		<method name="hb_ot_color_palette_get_flags" result="hb_ot_color_palette_flags_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="palette_index" type="unsigned int" />
+		</method>
+		<method name="hb_ot_color_palette_get_colors" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="palette_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="color_count" type="unsigned int *" />
+			<arg name="colors" type="hb_color_t *" />
+		</method>
+		<method name="hb_ot_color_has_layers" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_color_glyph_get_layers" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="layer_count" type="unsigned int *" />
+			<arg name="layers" type="hb_ot_color_layer_t *" />
+		</method>
+		<method name="hb_ot_color_has_paint" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_color_glyph_has_paint" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_color_has_svg" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_color_glyph_reference_svg" result="hb_blob_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_color_has_png" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_color_glyph_reference_png" result="hb_blob_t *">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_layout_table_choose_script" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_tags" type="const hb_tag_t *" />
+			<arg name="script_index" type="unsigned int *" />
+			<arg name="chosen_script" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_script_find_language" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_tag" type="hb_tag_t" />
+			<arg name="language_index" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_tags_from_script" result="void">
+			<arg name="script" type="hb_script_t" />
+			<arg name="script_tag_1" type="hb_tag_t *" />
+			<arg name="script_tag_2" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_tag_from_language" result="hb_tag_t">
+			<arg name="language" type="hb_language_t" />
+		</method>
+		<method name="hb_ot_var_get_axes" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="axes_count" type="unsigned int *" />
+			<arg name="axes_array" type="hb_ot_var_axis_t *" />
+		</method>
+		<method name="hb_ot_var_find_axis" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="axis_tag" type="hb_tag_t" />
+			<arg name="axis_index" type="unsigned int *" />
+			<arg name="axis_info" type="hb_ot_var_axis_t *" />
+		</method>
+		<method name="hb_ot_font_set_funcs" result="void">
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_ot_tags_from_script_and_language" result="void">
+			<arg name="script" type="hb_script_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="script_count" type="unsigned int *" />
+			<arg name="script_tags" type="hb_tag_t *" />
+			<arg name="language_count" type="unsigned int *" />
+			<arg name="language_tags" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_tag_to_script" result="hb_script_t">
+			<arg name="tag" type="hb_tag_t" />
+		</method>
+		<method name="hb_ot_tag_to_language" result="hb_language_t">
+			<arg name="tag" type="hb_tag_t" />
+		</method>
+		<method name="hb_ot_tags_to_script_and_language" result="void">
+			<arg name="script_tag" type="hb_tag_t" />
+			<arg name="language_tag" type="hb_tag_t" />
+			<arg name="script" type="hb_script_t *" />
+			<arg name="language" type="hb_language_t *" />
+		</method>
+		<method name="hb_ot_layout_has_glyph_classes" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_layout_get_glyph_class" result="hb_ot_layout_glyph_class_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_layout_get_glyphs_in_class" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="klass" type="hb_ot_layout_glyph_class_t" />
+			<arg name="glyphs" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_layout_get_attach_points" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="point_count" type="unsigned int *" />
+			<arg name="point_array" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_get_ligature_carets" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="caret_count" type="unsigned int *" />
+			<arg name="caret_array" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_layout_table_get_script_tags" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="script_count" type="unsigned int *" />
+			<arg name="script_tags" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_table_find_script" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_table_select_script" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_count" type="unsigned int" />
+			<arg name="script_tags" type="const hb_tag_t *" />
+			<arg name="script_index" type="unsigned int *" />
+			<arg name="chosen_script" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_table_get_feature_tags" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="feature_count" type="unsigned int *" />
+			<arg name="feature_tags" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_script_get_language_tags" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="language_count" type="unsigned int *" />
+			<arg name="language_tags" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_script_select_language" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_count" type="unsigned int" />
+			<arg name="language_tags" type="const hb_tag_t *" />
+			<arg name="language_index" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_script_select_language2" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_count" type="unsigned int" />
+			<arg name="language_tags" type="const hb_tag_t *" />
+			<arg name="language_index" type="unsigned int *" />
+			<arg name="chosen_language" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_language_get_required_feature_index" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_index" type="unsigned int" />
+			<arg name="feature_index" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_language_get_required_feature" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_index" type="unsigned int" />
+			<arg name="feature_index" type="unsigned int *" />
+			<arg name="feature_tag" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_language_get_feature_indexes" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="feature_count" type="unsigned int *" />
+			<arg name="feature_indexes" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_language_get_feature_tags" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="feature_count" type="unsigned int *" />
+			<arg name="feature_tags" type="hb_tag_t *" />
+		</method>
+		<method name="hb_ot_layout_language_find_feature" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned int" />
+			<arg name="language_index" type="unsigned int" />
+			<arg name="feature_tag" type="hb_tag_t" />
+			<arg name="feature_index" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_feature_get_lookups" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="feature_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="lookup_count" type="unsigned int *" />
+			<arg name="lookup_indexes" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_table_get_lookup_count" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+		</method>
+		<method name="hb_ot_layout_collect_features" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="scripts" type="const hb_tag_t *" />
+			<arg name="languages" type="const hb_tag_t *" />
+			<arg name="features" type="const hb_tag_t *" />
+			<arg name="feature_indexes" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_layout_collect_features_map" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="script_index" type="unsigned" />
+			<arg name="language_index" type="unsigned" />
+			<arg name="feature_map" type="hb_map_t *" />
+		</method>
+		<method name="hb_ot_layout_collect_lookups" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="scripts" type="const hb_tag_t *" />
+			<arg name="languages" type="const hb_tag_t *" />
+			<arg name="features" type="const hb_tag_t *" />
+			<arg name="lookup_indexes" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_layout_lookup_collect_glyphs" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="lookup_index" type="unsigned int" />
+			<arg name="glyphs_before" type="hb_set_t *" />
+			<arg name="glyphs_input" type="hb_set_t *" />
+			<arg name="glyphs_after" type="hb_set_t *" />
+			<arg name="glyphs_output" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_layout_table_find_feature_variations" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="coords" type="const int *" />
+			<arg name="num_coords" type="unsigned int" />
+			<arg name="variations_index" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_feature_with_variations_get_lookups" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="feature_index" type="unsigned int" />
+			<arg name="variations_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="lookup_count" type="unsigned int *" />
+			<arg name="lookup_indexes" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_has_substitution" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_layout_lookup_get_glyph_alternates" result="unsigned">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="lookup_index" type="unsigned" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="start_offset" type="unsigned" />
+			<arg name="alternate_count" type="unsigned *" />
+			<arg name="alternate_glyphs" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_ot_layout_lookup_would_substitute" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="lookup_index" type="unsigned int" />
+			<arg name="glyphs" type="const hb_codepoint_t *" />
+			<arg name="glyphs_length" type="unsigned int" />
+			<arg name="zero_context" type="hb_bool_t" />
+		</method>
+		<method name="hb_ot_layout_lookup_substitute_closure" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="lookup_index" type="unsigned int" />
+			<arg name="glyphs" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_layout_lookups_substitute_closure" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="lookups" type="const hb_set_t *" />
+			<arg name="glyphs" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_layout_has_positioning" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_layout_get_size_params" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="design_size" type="unsigned int *" />
+			<arg name="subfamily_id" type="unsigned int *" />
+			<arg name="subfamily_name_id" type="hb_ot_name_id_t *" />
+			<arg name="range_start" type="unsigned int *" />
+			<arg name="range_end" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_layout_lookup_get_optical_bound" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="lookup_index" type="unsigned" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_layout_feature_get_name_ids" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="feature_index" type="unsigned int" />
+			<arg name="label_id" type="hb_ot_name_id_t *" />
+			<arg name="tooltip_id" type="hb_ot_name_id_t *" />
+			<arg name="sample_id" type="hb_ot_name_id_t *" />
+			<arg name="num_named_parameters" type="unsigned int *" />
+			<arg name="first_param_id" type="hb_ot_name_id_t *" />
+		</method>
+		<method name="hb_ot_layout_feature_get_characters" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="feature_index" type="unsigned int" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="char_count" type="unsigned int *" />
+			<arg name="characters" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_ot_layout_get_font_extents" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="script_tag" type="hb_tag_t" />
+			<arg name="language_tag" type="hb_tag_t" />
+			<arg name="extents" type="hb_font_extents_t *" />
+		</method>
+		<method name="hb_ot_layout_get_font_extents2" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="script" type="hb_script_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="extents" type="hb_font_extents_t *" />
+		</method>
+		<method name="hb_ot_layout_get_horizontal_baseline_tag_for_script" result="hb_ot_layout_baseline_tag_t">
+			<arg name="script" type="hb_script_t" />
+		</method>
+		<method name="hb_ot_layout_get_baseline" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="baseline_tag" type="hb_ot_layout_baseline_tag_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="script_tag" type="hb_tag_t" />
+			<arg name="language_tag" type="hb_tag_t" />
+			<arg name="coord" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_layout_get_baseline2" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="baseline_tag" type="hb_ot_layout_baseline_tag_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="script" type="hb_script_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="coord" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_layout_get_baseline_with_fallback" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="baseline_tag" type="hb_ot_layout_baseline_tag_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="script_tag" type="hb_tag_t" />
+			<arg name="language_tag" type="hb_tag_t" />
+			<arg name="coord" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_layout_get_baseline_with_fallback2" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="baseline_tag" type="hb_ot_layout_baseline_tag_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="script" type="hb_script_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="coord" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_math_has_data" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_math_get_constant" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="constant" type="hb_ot_math_constant_t" />
+		</method>
+		<method name="hb_ot_math_get_glyph_italics_correction" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_math_get_glyph_top_accent_attachment" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_math_is_glyph_extended_shape" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_ot_math_get_glyph_kerning" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="kern" type="hb_ot_math_kern_t" />
+			<arg name="correction_height" type="hb_position_t" />
+		</method>
+		<method name="hb_ot_math_get_glyph_kernings" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="kern" type="hb_ot_math_kern_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="entries_count" type="unsigned int *" />
+			<arg name="kern_entries" type="hb_ot_math_kern_entry_t *" />
+		</method>
+		<method name="hb_ot_math_get_glyph_variants" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="variants_count" type="unsigned int *" />
+			<arg name="variants" type="hb_ot_math_glyph_variant_t *" />
+		</method>
+		<method name="hb_ot_math_get_min_connector_overlap" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="direction" type="hb_direction_t" />
+		</method>
+		<method name="hb_ot_math_get_glyph_assembly" result="unsigned int">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="direction" type="hb_direction_t" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="parts_count" type="unsigned int *" />
+			<arg name="parts" type="hb_ot_math_glyph_part_t *" />
+			<arg name="italics_correction" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_meta_get_entry_tags" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="entries_count" type="unsigned int *" />
+			<arg name="entries" type="hb_ot_meta_tag_t *" />
+		</method>
+		<method name="hb_ot_meta_reference_entry" result="hb_blob_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="meta_tag" type="hb_ot_meta_tag_t" />
+		</method>
+		<method name="hb_ot_metrics_get_position" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="metrics_tag" type="hb_ot_metrics_tag_t" />
+			<arg name="position" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_metrics_get_position_with_fallback" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="metrics_tag" type="hb_ot_metrics_tag_t" />
+			<arg name="position" type="hb_position_t *" />
+		</method>
+		<method name="hb_ot_metrics_get_variation" result="float">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="metrics_tag" type="hb_ot_metrics_tag_t" />
+		</method>
+		<method name="hb_ot_metrics_get_x_variation" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="metrics_tag" type="hb_ot_metrics_tag_t" />
+		</method>
+		<method name="hb_ot_metrics_get_y_variation" result="hb_position_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="metrics_tag" type="hb_ot_metrics_tag_t" />
+		</method>
+		<method name="hb_ot_name_list_names" result="const hb_ot_name_entry_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="num_entries" type="unsigned int *" />
+		</method>
+		<method name="hb_ot_name_get_utf8" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="name_id" type="hb_ot_name_id_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="text_size" type="unsigned int *" />
+			<arg name="text" type="char *" />
+		</method>
+		<method name="hb_ot_name_get_utf16" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="name_id" type="hb_ot_name_id_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="text_size" type="unsigned int *" />
+			<arg name="text" type="uint16_t *" />
+		</method>
+		<method name="hb_ot_name_get_utf32" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="name_id" type="hb_ot_name_id_t" />
+			<arg name="language" type="hb_language_t" />
+			<arg name="text_size" type="unsigned int *" />
+			<arg name="text" type="uint32_t *" />
+		</method>
+		<method name="hb_ot_shape_glyphs_closure" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="features" type="const hb_feature_t *" />
+			<arg name="num_features" type="unsigned int" />
+			<arg name="glyphs" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_shape_plan_collect_lookups" result="void">
+			<arg name="shape_plan" type="hb_shape_plan_t *" />
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="lookup_indexes" type="hb_set_t *" />
+		</method>
+		<method name="hb_ot_var_has_data" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_var_get_axis_count" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_var_get_axis_infos" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="start_offset" type="unsigned int" />
+			<arg name="axes_count" type="unsigned int *" />
+			<arg name="axes_array" type="hb_ot_var_axis_info_t *" />
+		</method>
+		<method name="hb_ot_var_find_axis_info" result="hb_bool_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="axis_tag" type="hb_tag_t" />
+			<arg name="axis_info" type="hb_ot_var_axis_info_t *" />
+		</method>
+		<method name="hb_ot_var_get_named_instance_count" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_ot_var_named_instance_get_subfamily_name_id" result="hb_ot_name_id_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="instance_index" type="unsigned int" />
+		</method>
+		<method name="hb_ot_var_named_instance_get_postscript_name_id" result="hb_ot_name_id_t">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="instance_index" type="unsigned int" />
+		</method>
+		<method name="hb_ot_var_named_instance_get_design_coords" result="unsigned int">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="instance_index" type="unsigned int" />
+			<arg name="coords_length" type="unsigned int *" />
+			<arg name="coords" type="float *" />
+		</method>
+		<method name="hb_ot_var_normalize_variations" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="variations" type="const hb_variation_t *" />
+			<arg name="variations_length" type="unsigned int" />
+			<arg name="coords" type="int *" />
+			<arg name="coords_length" type="unsigned int" />
+		</method>
+		<method name="hb_ot_var_normalize_coords" result="void">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="coords_length" type="unsigned int" />
+			<arg name="design_coords" type="const float *" />
+			<arg name="normalized_coords" type="int *" />
+		</method>
+		<method name="hb_paint_funcs_create" result="hb_paint_funcs_t *" />
+		<method name="hb_paint_funcs_get_empty" result="hb_paint_funcs_t *" />
+		<method name="hb_paint_funcs_reference" result="hb_paint_funcs_t *">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+		</method>
+		<method name="hb_paint_funcs_destroy" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+		</method>
+		<method name="hb_paint_funcs_set_user_data" result="hb_bool_t">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_paint_funcs_get_user_data" result="void *">
+			<arg name="funcs" type="const hb_paint_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_paint_funcs_make_immutable" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+		</method>
+		<method name="hb_paint_funcs_is_immutable" result="hb_bool_t">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+		</method>
+		<method name="hb_color_line_get_color_stops" result="unsigned int">
+			<arg name="color_line" type="hb_color_line_t *" />
+			<arg name="start" type="unsigned int" />
+			<arg name="count" type="unsigned int *" />
+			<arg name="color_stops" type="hb_color_stop_t *" />
+		</method>
+		<method name="hb_color_line_get_extend" result="hb_paint_extend_t">
+			<arg name="color_line" type="hb_color_line_t *" />
+		</method>
+		<method name="hb_paint_funcs_set_push_transform_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_push_transform_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_pop_transform_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_pop_transform_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_color_glyph_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_color_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_push_clip_glyph_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_push_clip_glyph_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_push_clip_rectangle_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_push_clip_rectangle_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_pop_clip_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_pop_clip_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_color_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_color_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_image_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_image_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_linear_gradient_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_linear_gradient_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_radial_gradient_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_radial_gradient_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_sweep_gradient_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_sweep_gradient_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_push_group_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_push_group_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_pop_group_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_pop_group_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_funcs_set_custom_palette_color_func" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="func" type="hb_paint_custom_palette_color_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_paint_push_transform" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="xx" type="float" />
+			<arg name="yx" type="float" />
+			<arg name="xy" type="float" />
+			<arg name="yy" type="float" />
+			<arg name="dx" type="float" />
+			<arg name="dy" type="float" />
+		</method>
+		<method name="hb_paint_pop_transform" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+		</method>
+		<method name="hb_paint_color_glyph" result="hb_bool_t">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_paint_push_clip_glyph" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="glyph" type="hb_codepoint_t" />
+			<arg name="font" type="hb_font_t *" />
+		</method>
+		<method name="hb_paint_push_clip_rectangle" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="xmin" type="float" />
+			<arg name="ymin" type="float" />
+			<arg name="xmax" type="float" />
+			<arg name="ymax" type="float" />
+		</method>
+		<method name="hb_paint_pop_clip" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+		</method>
+		<method name="hb_paint_color" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="is_foreground" type="hb_bool_t" />
+			<arg name="color" type="hb_color_t" />
+		</method>
+		<method name="hb_paint_image" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="image" type="hb_blob_t *" />
+			<arg name="width" type="unsigned int" />
+			<arg name="height" type="unsigned int" />
+			<arg name="format" type="hb_tag_t" />
+			<arg name="slant" type="float" />
+			<arg name="extents" type="hb_glyph_extents_t *" />
+		</method>
+		<method name="hb_paint_linear_gradient" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="color_line" type="hb_color_line_t *" />
+			<arg name="x0" type="float" />
+			<arg name="y0" type="float" />
+			<arg name="x1" type="float" />
+			<arg name="y1" type="float" />
+			<arg name="x2" type="float" />
+			<arg name="y2" type="float" />
+		</method>
+		<method name="hb_paint_radial_gradient" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="color_line" type="hb_color_line_t *" />
+			<arg name="x0" type="float" />
+			<arg name="y0" type="float" />
+			<arg name="r0" type="float" />
+			<arg name="x1" type="float" />
+			<arg name="y1" type="float" />
+			<arg name="r1" type="float" />
+		</method>
+		<method name="hb_paint_sweep_gradient" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="color_line" type="hb_color_line_t *" />
+			<arg name="x0" type="float" />
+			<arg name="y0" type="float" />
+			<arg name="start_angle" type="float" />
+			<arg name="end_angle" type="float" />
+		</method>
+		<method name="hb_paint_push_group" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+		</method>
+		<method name="hb_paint_pop_group" result="void">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="mode" type="hb_paint_composite_mode_t" />
+		</method>
+		<method name="hb_paint_custom_palette_color" result="hb_bool_t">
+			<arg name="funcs" type="hb_paint_funcs_t *" />
+			<arg name="paint_data" type="void *" />
+			<arg name="color_index" type="unsigned int" />
+			<arg name="color" type="hb_color_t *" />
+		</method>
+		<method name="hb_set_create" result="hb_set_t *" />
+		<method name="hb_set_get_empty" result="hb_set_t *" />
+		<method name="hb_set_reference" result="hb_set_t *">
+			<arg name="set" type="hb_set_t *" />
+		</method>
+		<method name="hb_set_destroy" result="void">
+			<arg name="set" type="hb_set_t *" />
+		</method>
+		<method name="hb_set_set_user_data" result="hb_bool_t">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_set_get_user_data" result="void *">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_set_allocation_successful" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_copy" result="hb_set_t *">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_clear" result="void">
+			<arg name="set" type="hb_set_t *" />
+		</method>
+		<method name="hb_set_is_empty" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_invert" result="void">
+			<arg name="set" type="hb_set_t *" />
+		</method>
+		<method name="hb_set_is_inverted" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_has" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="codepoint" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_set_add" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="codepoint" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_set_add_range" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="first" type="hb_codepoint_t" />
+			<arg name="last" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_set_add_sorted_array" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="sorted_codepoints" type="const hb_codepoint_t *" />
+			<arg name="num_codepoints" type="unsigned int" />
+		</method>
+		<method name="hb_set_del" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="codepoint" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_set_del_range" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="first" type="hb_codepoint_t" />
+			<arg name="last" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_set_is_equal" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="other" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_hash" result="unsigned int">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_is_subset" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="larger_set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_set" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="other" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_union" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="other" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_intersect" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="other" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_subtract" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="other" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_symmetric_difference" result="void">
+			<arg name="set" type="hb_set_t *" />
+			<arg name="other" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_get_population" result="unsigned int">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_get_min" result="hb_codepoint_t">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_get_max" result="hb_codepoint_t">
+			<arg name="set" type="const hb_set_t *" />
+		</method>
+		<method name="hb_set_next" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="codepoint" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_set_previous" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="codepoint" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_set_next_range" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="first" type="hb_codepoint_t *" />
+			<arg name="last" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_set_previous_range" result="hb_bool_t">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="first" type="hb_codepoint_t *" />
+			<arg name="last" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_set_next_many" result="unsigned int">
+			<arg name="set" type="const hb_set_t *" />
+			<arg name="codepoint" type="hb_codepoint_t" />
+			<arg name="out" type="hb_codepoint_t *" />
+			<arg name="size" type="unsigned int" />
+		</method>
+		<method name="hb_shape_plan_create" result="hb_shape_plan_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="props" type="const hb_segment_properties_t *" />
+			<arg name="user_features" type="const hb_feature_t *" />
+			<arg name="num_user_features" type="unsigned int" />
+			<arg name="shaper_list" type="const char * const *" />
+		</method>
+		<method name="hb_shape_plan_create_cached" result="hb_shape_plan_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="props" type="const hb_segment_properties_t *" />
+			<arg name="user_features" type="const hb_feature_t *" />
+			<arg name="num_user_features" type="unsigned int" />
+			<arg name="shaper_list" type="const char * const *" />
+		</method>
+		<method name="hb_shape_plan_create2" result="hb_shape_plan_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="props" type="const hb_segment_properties_t *" />
+			<arg name="user_features" type="const hb_feature_t *" />
+			<arg name="num_user_features" type="unsigned int" />
+			<arg name="coords" type="const int *" />
+			<arg name="num_coords" type="unsigned int" />
+			<arg name="shaper_list" type="const char * const *" />
+		</method>
+		<method name="hb_shape_plan_create_cached2" result="hb_shape_plan_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="props" type="const hb_segment_properties_t *" />
+			<arg name="user_features" type="const hb_feature_t *" />
+			<arg name="num_user_features" type="unsigned int" />
+			<arg name="coords" type="const int *" />
+			<arg name="num_coords" type="unsigned int" />
+			<arg name="shaper_list" type="const char * const *" />
+		</method>
+		<method name="hb_shape_plan_get_empty" result="hb_shape_plan_t *" />
+		<method name="hb_shape_plan_reference" result="hb_shape_plan_t *">
+			<arg name="shape_plan" type="hb_shape_plan_t *" />
+		</method>
+		<method name="hb_shape_plan_destroy" result="void">
+			<arg name="shape_plan" type="hb_shape_plan_t *" />
+		</method>
+		<method name="hb_shape_plan_set_user_data" result="hb_bool_t">
+			<arg name="shape_plan" type="hb_shape_plan_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_shape_plan_get_user_data" result="void *">
+			<arg name="shape_plan" type="const hb_shape_plan_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_shape_plan_execute" result="hb_bool_t">
+			<arg name="shape_plan" type="hb_shape_plan_t *" />
+			<arg name="font" type="hb_font_t *" />
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="features" type="const hb_feature_t *" />
+			<arg name="num_features" type="unsigned int" />
+		</method>
+		<method name="hb_shape_plan_get_shaper" result="const char *">
+			<arg name="shape_plan" type="hb_shape_plan_t *" />
+		</method>
+		<method name="hb_shape" result="void">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="features" type="const hb_feature_t *" />
+			<arg name="num_features" type="unsigned int" />
+		</method>
+		<method name="hb_shape_full" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="features" type="const hb_feature_t *" />
+			<arg name="num_features" type="unsigned int" />
+			<arg name="shaper_list" type="const char * const *" />
+		</method>
+		<method name="hb_shape_justify" result="hb_bool_t">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="buffer" type="hb_buffer_t *" />
+			<arg name="features" type="const hb_feature_t *" />
+			<arg name="num_features" type="unsigned int" />
+			<arg name="shaper_list" type="const char * const *" />
+			<arg name="min_target_advance" type="float" />
+			<arg name="max_target_advance" type="float" />
+			<arg name="advance" type="float *" />
+			<arg name="var_tag" type="hb_tag_t *" />
+			<arg name="var_value" type="float *" />
+		</method>
+		<method name="hb_shape_list_shapers" result="const char **" />
+		<method name="hb_style_get_value" result="float">
+			<arg name="font" type="hb_font_t *" />
+			<arg name="style_tag" type="hb_style_tag_t" />
+		</method>
+		<method name="hb_subset_repack_or_fail" result="hb_blob_t*">
+			<arg name="table_tag" type="hb_tag_t" />
+			<arg name="hb_objects" type="hb_object_t*" />
+			<arg name="num_hb_objs" type="unsigned" />
+		</method>
+		<method name="hb_subset_input_create_or_fail" result="hb_subset_input_t *" />
+		<method name="hb_subset_input_reference" result="hb_subset_input_t *">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_destroy" result="void">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_set_user_data" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_subset_input_get_user_data" result="void *">
+			<arg name="input" type="const hb_subset_input_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_subset_input_keep_everything" result="void">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_unicode_set" result="hb_set_t *">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_glyph_set" result="hb_set_t *">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_set" result="hb_set_t *">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="set_type" type="hb_subset_sets_t" />
+		</method>
+		<method name="hb_subset_input_old_to_new_glyph_mapping" result="hb_map_t*">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_get_flags" result="hb_subset_flags_t">
+			<arg name="input" type="hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_input_set_flags" result="void">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="value" type="unsigned" />
+		</method>
+		<method name="hb_subset_input_pin_all_axes_to_default" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="face" type="hb_face_t *" />
+		</method>
+		<method name="hb_subset_input_pin_axis_to_default" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="face" type="hb_face_t *" />
+			<arg name="axis_tag" type="hb_tag_t" />
+		</method>
+		<method name="hb_subset_input_pin_axis_location" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="face" type="hb_face_t *" />
+			<arg name="axis_tag" type="hb_tag_t" />
+			<arg name="axis_value" type="float" />
+		</method>
+		<method name="hb_subset_input_get_axis_range" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="axis_tag" type="hb_tag_t" />
+			<arg name="axis_min_value" type="float *" />
+			<arg name="axis_max_value" type="float *" />
+			<arg name="axis_def_value" type="float *" />
+		</method>
+		<method name="hb_subset_input_set_axis_range" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="face" type="hb_face_t *" />
+			<arg name="axis_tag" type="hb_tag_t" />
+			<arg name="axis_min_value" type="float" />
+			<arg name="axis_max_value" type="float" />
+			<arg name="axis_def_value" type="float" />
+		</method>
+		<method name="hb_subset_input_override_name_table" result="hb_bool_t">
+			<arg name="input" type="hb_subset_input_t *" />
+			<arg name="name_id" type="hb_ot_name_id_t" />
+			<arg name="platform_id" type="unsigned" />
+			<arg name="encoding_id" type="unsigned" />
+			<arg name="language_id" type="unsigned" />
+			<arg name="name_str" type="const char *" />
+			<arg name="str_len" type="int" />
+		</method>
+		<method name="hb_subset_preprocess" result="hb_face_t *">
+			<arg name="source" type="hb_face_t *" />
+		</method>
+		<method name="hb_subset_or_fail" result="hb_face_t *">
+			<arg name="source" type="hb_face_t *" />
+			<arg name="input" type="const hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_plan_execute_or_fail" result="hb_face_t *">
+			<arg name="plan" type="hb_subset_plan_t *" />
+		</method>
+		<method name="hb_subset_plan_create_or_fail" result="hb_subset_plan_t *">
+			<arg name="face" type="hb_face_t *" />
+			<arg name="input" type="const hb_subset_input_t *" />
+		</method>
+		<method name="hb_subset_plan_destroy" result="void">
+			<arg name="plan" type="hb_subset_plan_t *" />
+		</method>
+		<method name="hb_subset_plan_old_to_new_glyph_mapping" result="hb_map_t *">
+			<arg name="plan" type="const hb_subset_plan_t *" />
+		</method>
+		<method name="hb_subset_plan_new_to_old_glyph_mapping" result="hb_map_t *">
+			<arg name="plan" type="const hb_subset_plan_t *" />
+		</method>
+		<method name="hb_subset_plan_unicode_to_old_glyph_mapping" result="hb_map_t *">
+			<arg name="plan" type="const hb_subset_plan_t *" />
+		</method>
+		<method name="hb_subset_plan_reference" result="hb_subset_plan_t *">
+			<arg name="plan" type="hb_subset_plan_t *" />
+		</method>
+		<method name="hb_subset_plan_set_user_data" result="hb_bool_t">
+			<arg name="plan" type="hb_subset_plan_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_subset_plan_get_user_data" result="void *">
+			<arg name="plan" type="const hb_subset_plan_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_unicode_funcs_get_default" result="hb_unicode_funcs_t *" />
+		<method name="hb_unicode_funcs_create" result="hb_unicode_funcs_t *">
+			<arg name="parent" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_unicode_funcs_get_empty" result="hb_unicode_funcs_t *" />
+		<method name="hb_unicode_funcs_reference" result="hb_unicode_funcs_t *">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_unicode_funcs_destroy" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_unicode_funcs_set_user_data" result="hb_bool_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+			<arg name="data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+			<arg name="replace" type="hb_bool_t" />
+		</method>
+		<method name="hb_unicode_funcs_get_user_data" result="void *">
+			<arg name="ufuncs" type="const hb_unicode_funcs_t *" />
+			<arg name="key" type="hb_user_data_key_t *" />
+		</method>
+		<method name="hb_unicode_funcs_make_immutable" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_unicode_funcs_is_immutable" result="hb_bool_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_unicode_funcs_get_parent" result="hb_unicode_funcs_t *">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+		</method>
+		<method name="hb_unicode_funcs_set_combining_class_func" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_combining_class_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_general_category_func" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_general_category_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_mirroring_func" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_mirroring_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_script_func" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_script_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_compose_func" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_compose_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_funcs_set_decompose_func" result="void">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="func" type="hb_unicode_decompose_func_t" />
+			<arg name="user_data" type="void *" />
+			<arg name="destroy" type="hb_destroy_func_t" />
+		</method>
+		<method name="hb_unicode_combining_class" result="hb_unicode_combining_class_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_unicode_general_category" result="hb_unicode_general_category_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_unicode_mirroring" result="hb_codepoint_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_unicode_script" result="hb_script_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="unicode" type="hb_codepoint_t" />
+		</method>
+		<method name="hb_unicode_compose" result="hb_bool_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="a" type="hb_codepoint_t" />
+			<arg name="b" type="hb_codepoint_t" />
+			<arg name="ab" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_unicode_decompose" result="hb_bool_t">
+			<arg name="ufuncs" type="hb_unicode_funcs_t *" />
+			<arg name="ab" type="hb_codepoint_t" />
+			<arg name="a" type="hb_codepoint_t *" />
+			<arg name="b" type="hb_codepoint_t *" />
+		</method>
+		<method name="hb_version" result="void">
+			<arg name="major" type="unsigned int *" />
+			<arg name="minor" type="unsigned int *" />
+			<arg name="micro" type="unsigned int *" />
+		</method>
+		<method name="hb_version_string" result="const char *" />
+		<method name="hb_version_atleast" result="hb_bool_t">
+			<arg name="major" type="unsigned int" />
+			<arg name="minor" type="unsigned int" />
+			<arg name="micro" type="unsigned int" />
+		</method>
+
+	</interface>
+</library>

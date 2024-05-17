@@ -168,9 +168,10 @@ typedef enum { /*< flags >*/
 HB_EXTERN hb_glyph_flags_t
 hb_glyph_info_get_glyph_flags (const hb_glyph_info_t *info);
 
+#ifndef __amigaos4__
 #define hb_glyph_info_get_glyph_flags(info) \
 	((hb_glyph_flags_t) ((unsigned int) (info)->mask & HB_GLYPH_FLAG_DEFINED))
-
+#endif
 
 /**
  * hb_glyph_position_t:
