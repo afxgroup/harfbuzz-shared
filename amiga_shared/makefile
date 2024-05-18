@@ -29,7 +29,7 @@ LINK = -gstabs -Wl,--no-undefined
 TARGET = harfbuzz.library
 
 # Additional linker libraries
-LIBS = -L../src/.libs -lharfbuzz -lharfbuzz-subset -lharfbuzz-cairo -lfreetype -lpthread
+LIBS = -L../src/.libs -lharfbuzz -lharfbuzz-subset -lharfbuzz-cairo -lcairo -lpixman-1 -lfreetype -lpthread
 
 # Version of the library to build
 VERSION = 54
