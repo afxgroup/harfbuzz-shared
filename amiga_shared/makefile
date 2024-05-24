@@ -16,6 +16,7 @@ AR     = $(CROSS_COMPILE)ar
 LD     = $(CROSS_COMPILE)ld 
 RANLIB = $(CROSS_COMPILE)ranlib 
 RM     = rm -Rf
+CP	   = cp
 
 # Change these as required
 OPTIMIZE = -O2 -DHB_EXPERIMENTAL_API=1 -Wno-deprecated-declarations -Wfatal-errors
@@ -23,13 +24,13 @@ DEBUG    = -gstabs # -DDEBUG
 CFLAGS   = -I. -Iinclude -I../src/ -I/usr/ppc-amigaos/SDK/local/common/include/cairo/ -I/usr/ppc-amigaos/SDK/local/common/include/freetype2 -Wall $(AMIGA_CFLAGS) $(OPTIMIZE) $(DEBUG)
 
 # Flags passed to gcc during linking
-LINK = -gstabs -Wl,--no-undefined
+LINK = -gstabs
 
 # Name of the "thing" to build
 TARGET = harfbuzz.library
 
 # Additional linker libraries
-LIBS = -L../src/.libs -lharfbuzz -lharfbuzz-subset -lharfbuzz-cairo -lcairo -lpixman-1 -lfreetype -lpthread
+LIBS = ../src/.libs/libharfbuzz.a ../src/.libs/libharfbuzz-subset.a ../src/.libs/libharfbuzz-cairo.a -lcairo -lpng16 -lz -lpixman-1 -lfreetype
 
 # Version of the library to build
 VERSION = 54
@@ -42,7 +43,7 @@ OBJS = $(SRCS:.c=.o)
 
 LINKOBJS = autoinit_harfbuzz_base.o autoinit_harfbuzz_main.o libstubs.o
 
-all: checklib libharfbuzz.a $(TARGET)
+all: compilelib libharfbuzz.a $(TARGET)
 
 # Rules for building
 $(TARGET): $(OBJS)
@@ -52,14 +53,19 @@ $(TARGET): $(OBJS)
 libharfbuzz.a: $(LINKOBJS)
 	$(AR) rcs $@ $(LINKOBJS)
 
-checklib:
-ifeq (,$(wildcard ../src/.libs/libharfbuzz.a))
-	$(error Please compile libharfbuzz first!)
+compilelib:
+	$(RM) $(TARGET) $(TARGET).debug*
+ifeq (,$(wildcard ../lib/.libs/libharfbuzz.a))
+ifeq (,$(wildcard ../configure))
+	cd ..; ./configure --prefix=$(shell pwd)/SDK --host=ppc-amigaos --disable-shared --with-glib=no --with-icu=no --with-cairo=yes --with-freetype=yes --with-freetype=yes CPPFLAGS="-DHB_EXPERIMENTAL_API=1"; cd amiga_shared;
+endif
+	cd ..; make && make install; cd amiga_shared;
 endif
 
 .PHONY: clean
 clean:
-	$(RM) $(TARGET) *.debug* $(OBJS) $(LINKOBJS) libharfbuzz.a
+	cd ..; make clean; cd amiga_shared;
+	$(RM) $(TARGET) $(TARGET).debug* $(OBJS) $(LINKOBJS) libharfbuzz.a SDK
 
 .PHONY: revision
 revision:

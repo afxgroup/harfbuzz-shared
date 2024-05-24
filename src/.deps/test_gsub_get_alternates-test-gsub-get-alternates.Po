@@ -1,0 +1,114 @@
+test_gsub_get_alternates-test-gsub-get-alternates.o: \
+ test-gsub-get-alternates.cc hb.h hb-blob.h hb-common.h \
+ /usr/ppc-amigaos/SDK/newlib/include/inttypes.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdint.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/limits.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/syslimits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/limits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/newlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/syslimits.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/stddef.h hb-buffer.h \
+ hb-unicode.h hb-font.h hb-face.h hb-map.h hb-set.h hb-draw.h hb.h \
+ hb-paint.h hb-deprecated.h hb-shape.h hb-shape-plan.h hb-style.h \
+ hb-version.h hb-ot.h hb-ot-color.h hb-ot-name.h hb-ot-deprecated.h \
+ hb-ot-font.h hb-ot-layout.h hb-ot-math.h hb-ot-meta.h hb-ot-metrics.h \
+ hb-ot-shape.h hb-ot-var.h /usr/ppc-amigaos/include/c++/11.3.0/stdlib.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cstdlib \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/c++config.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/os_defines.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/cpu_defines.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/pstl/pstl_config.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/_ansi.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/config.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/ieeefp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/features.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/reent.h \
+ /usr/ppc-amigaos/SDK/newlib/include/_ansi.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/_types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/lock.h \
+ /usr/ppc-amigaos/SDK/newlib/include/setjmp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/setjmp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/resource.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/time.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/_types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/select.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/timeb.h \
+ /usr/ppc-amigaos/SDK/newlib/include/signal.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/signal.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/stdlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/alloca.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/std_abs.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdio.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/stdarg.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/stdio.h
+hb.h:
+hb-blob.h:
+hb-common.h:
+/usr/ppc-amigaos/SDK/newlib/include/inttypes.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdint.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/limits.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/syslimits.h:
+/usr/ppc-amigaos/SDK/newlib/include/limits.h:
+/usr/ppc-amigaos/SDK/newlib/include/newlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/syslimits.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/stddef.h:
+hb-buffer.h:
+hb-unicode.h:
+hb-font.h:
+hb-face.h:
+hb-map.h:
+hb-set.h:
+hb-draw.h:
+hb.h:
+hb-paint.h:
+hb-deprecated.h:
+hb-shape.h:
+hb-shape-plan.h:
+hb-style.h:
+hb-version.h:
+hb-ot.h:
+hb-ot-color.h:
+hb-ot-name.h:
+hb-ot-deprecated.h:
+hb-ot-font.h:
+hb-ot-layout.h:
+hb-ot-math.h:
+hb-ot-meta.h:
+hb-ot-metrics.h:
+hb-ot-shape.h:
+hb-ot-var.h:
+/usr/ppc-amigaos/include/c++/11.3.0/stdlib.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cstdlib:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/c++config.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/os_defines.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/cpu_defines.h:
+/usr/ppc-amigaos/include/c++/11.3.0/pstl/pstl_config.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/_ansi.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/config.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/ieeefp.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/features.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/reent.h:
+/usr/ppc-amigaos/SDK/newlib/include/_ansi.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/_types.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/lock.h:
+/usr/ppc-amigaos/SDK/newlib/include/setjmp.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/setjmp.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/resource.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/time.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/types.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/_types.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/types.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/select.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/timeb.h:
+/usr/ppc-amigaos/SDK/newlib/include/signal.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/signal.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/stdlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/alloca.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/std_abs.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdio.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/stdarg.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/stdio.h:

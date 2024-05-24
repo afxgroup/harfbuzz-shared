@@ -46,6 +46,15 @@
 
 /* Defined externally, i.e. in config.h; must have typedef'ed hb_mutex_impl_t as well. */
 
+#elif defined(__amigaos4__)
+#include <proto/exec.h>
+
+typedef APTR hb_mutex_impl_t;
+
+#define hb_mutex_impl_init(M)	((M) = IExec->AllocSysObject(ASOT_MUTEX, NULL))
+#define hb_mutex_impl_lock(M)	IExec->MutexObtain((M))
+#define hb_mutex_impl_unlock(M)	IExec->MutexRelease((M))
+#define hb_mutex_impl_finish(M)	IExec->FreeSysObject(ASOT_MUTEX, (M))
 
 #elif !defined(HB_NO_MT) && !defined(HB_MUTEX_IMPL_STD_MUTEX) && (defined(HAVE_PTHREAD) || defined(__APPLE__))
 
@@ -95,14 +104,22 @@ typedef int hb_mutex_impl_t;
 struct hb_mutex_t
 {
   /* Create space for, but do not initialize m. */
+#ifndef __amigaos4__
   alignas(hb_mutex_impl_t) char m[sizeof (hb_mutex_impl_t)];
+#else
+  APTR m;
+#endif
 
   hb_mutex_t () { init (); }
   ~hb_mutex_t () { fini (); }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-align"
+#ifndef __amigaos4__
   void init   () { hb_mutex_impl_init   ((hb_mutex_impl_t *) m); }
+#else
+  void init   () { m = IExec->AllocSysObject(ASOT_MUTEX, NULL); }
+#endif
   void lock   () { hb_mutex_impl_lock   ((hb_mutex_impl_t *) m); }
   void unlock () { hb_mutex_impl_unlock ((hb_mutex_impl_t *) m); }
   void fini   () { hb_mutex_impl_finish ((hb_mutex_impl_t *) m); }

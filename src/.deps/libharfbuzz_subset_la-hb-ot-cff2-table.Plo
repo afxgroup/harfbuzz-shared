@@ -1,0 +1,510 @@
+libharfbuzz_subset_la-hb-ot-cff2-table.lo: hb-ot-cff2-table.cc hb.hh \
+ hb-config.hh ../config.h hb-limits.hh hb.h hb-blob.h hb-common.h \
+ /usr/ppc-amigaos/SDK/newlib/include/inttypes.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdint.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/limits.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/syslimits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/limits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/newlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/syslimits.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/stddef.h hb-buffer.h \
+ hb-unicode.h hb-font.h hb-face.h hb-map.h hb-set.h hb-draw.h hb-paint.h \
+ hb-deprecated.h hb-shape.h hb-shape-plan.h hb-style.h hb-version.h \
+ hb-ot.h hb-ot-color.h hb-ot-name.h hb-ot-deprecated.h hb-ot-font.h \
+ hb-ot-layout.h hb-ot-math.h hb-ot-meta.h hb-ot-metrics.h hb-ot-shape.h \
+ hb-ot-var.h hb-aat.h hb-aat-layout.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cassert \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/c++config.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/os_defines.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/cpu_defines.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/pstl/pstl_config.h \
+ /usr/ppc-amigaos/SDK/newlib/include/assert.h \
+ /usr/ppc-amigaos/SDK/newlib/include/_ansi.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/config.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/ieeefp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/features.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cfloat \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/float.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/climits \
+ /usr/ppc-amigaos/include/c++/11.3.0/cmath \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/cpp_type_traits.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/type_traits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/math.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/reent.h \
+ /usr/ppc-amigaos/SDK/newlib/include/_ansi.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/_types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/lock.h \
+ /usr/ppc-amigaos/SDK/newlib/include/setjmp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/setjmp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/resource.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/time.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/_types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/select.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/timeb.h \
+ /usr/ppc-amigaos/SDK/newlib/include/signal.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/signal.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/cdefs.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/std_abs.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/stdlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/alloca.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/specfun.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_algobase.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/functexcept.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/exception_defines.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/numeric_traits.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_pair.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/move.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/type_traits \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_iterator_base_types.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_iterator_base_funcs.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/concept_check.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/debug/assertions.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_iterator.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/ptr_traits.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/debug/debug.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/predefined_ops.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/limits \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/gamma.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/special_function_util.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/bessel_function.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/beta_function.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/ell_integral.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/exp_integral.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/hypergeometric.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/legendre_function.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/modified_bessel_func.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/poly_hermite.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/poly_laguerre.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/tr1/riemann_zeta.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/cstdarg \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/stdarg.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cstddef \
+ /usr/ppc-amigaos/include/c++/11.3.0/cstdio \
+ /usr/ppc-amigaos/SDK/newlib/include/stdio.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/stdio.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cstdlib \
+ /usr/ppc-amigaos/include/c++/11.3.0/cstring \
+ /usr/ppc-amigaos/SDK/newlib/include/string.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/string.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cerrno \
+ /usr/ppc-amigaos/SDK/newlib/include/errno.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/errno.h hb-cplusplus.hh \
+ /usr/ppc-amigaos/include/c++/11.3.0/functional \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_function.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/backward/binders.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/new \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/exception.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/tuple \
+ /usr/ppc-amigaos/include/c++/11.3.0/utility \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_relops.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/initializer_list \
+ /usr/ppc-amigaos/include/c++/11.3.0/array \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/range_access.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/uses_allocator.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/invoke.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/functional_hash.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/hash_bytes.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/refwrap.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/std_function.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/typeinfo \
+ /usr/ppc-amigaos/include/c++/11.3.0/unordered_map \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/allocator.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/c++allocator.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/new_allocator.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/memoryfwd.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/alloc_traits.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/alloc_traits.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_construct.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/aligned_buffer.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/hashtable.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/hashtable_policy.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/enable_special_members.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/node_handle.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/unordered_map.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/erase_if.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/vector \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_uninitialized.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_vector.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_bvector.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/vector.tcc \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_algo.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/algorithmfwd.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_heap.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_tempbuf.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/uniform_int_dist.h hb-meta.hh \
+ /usr/ppc-amigaos/include/c++/11.3.0/memory \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stl_raw_storage_iter.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/align.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bit \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/unique_ptr.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/shared_ptr.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/iosfwd \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/stringfwd.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/postypes.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/cwchar \
+ /usr/ppc-amigaos/SDK/newlib/include/wchar.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/shared_ptr_base.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/allocated_ptr.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/atomicity.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/gthr.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/gthr-default.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/stdlib.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/atomic_word.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/ext/concurrence.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/exception \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/exception_ptr.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/cxxabi_init_exception.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/nested_exception.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/shared_ptr_atomic.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/atomic_base.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/bits/atomic_lockfree_defines.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/backward/auto_ptr.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/pstl/glue_memory_defs.h \
+ /usr/ppc-amigaos/include/c++/11.3.0/pstl/execution_defs.h hb-mutex.hh \
+ /usr/ppc-amigaos/SDK/include/include_h/proto/exec.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/utility.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/types.h \
+ /usr/ppc-amigaos/SDK/include/include_h/amiga_compiler.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/libraries.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/nodes.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/lists.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/tagitem.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/data_structures.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/date.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/hooks.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/message_digest.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/name.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/pack.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/random.h \
+ /usr/ppc-amigaos/SDK/include/include_h/interfaces/exec.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/exec.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/alerts.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/errors.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/initializers.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/memory.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/tasks.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/exectags.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/ports.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/resident.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/interrupts.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/semaphores.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/io.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/devices.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/execbase.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/interfaces.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/avl.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/debug.h hb-number.hh \
+ hb-atomic.hh hb-null.hh hb-algs.hh \
+ /usr/ppc-amigaos/include/c++/11.3.0/algorithm \
+ /usr/ppc-amigaos/include/c++/11.3.0/pstl/glue_algorithm_defs.h \
+ hb-iter.hh hb-debug.hh hb-array.hh hb-vector.hh hb-object.hh \
+ hb-ot-cff2-table.hh hb-ot-cff-common.hh hb-open-type.hh hb-blob.hh \
+ hb-face.hh hb-shaper.hh hb-machinery.hh hb-dispatch.hh hb-sanitize.hh \
+ hb-shaper-list.hh hb-shape-plan.hh hb-ot-shape.hh hb-ot-map.hh \
+ hb-buffer.hh hb-unicode.hh hb-set-digest.hh hb-aat-map.hh hb-ot-face.hh \
+ hb-ot-face-table-list.hh hb-subset.hh hb-subset.h hb-serialize.hh \
+ hb-map.hh hb-set.hh hb-bit-set-invertible.hh hb-bit-set.hh \
+ hb-bit-page.hh hb-pool.hh hb-subset-repacker.h hb-subset-input.hh \
+ hb-font.hh hb-subset-instancer-solver.hh hb-subset-plan.hh \
+ hb-subset-accelerator.hh hb-multimap.hh hb-bimap.hh \
+ hb-subset-plan-member-list.hh hb-ot-layout-common.hh hb-ot-layout.hh \
+ OT/Layout/Common/Coverage.hh OT/Layout/Common/../types.hh \
+ OT/Layout/Common/CoverageFormat1.hh OT/Layout/Common/CoverageFormat2.hh \
+ OT/Layout/Common/RangeRecord.hh OT/Layout/types.hh \
+ hb-cff-interp-dict-common.hh hb-cff-interp-common.hh \
+ hb-subset-cff-common.hh hb-cff-interp-cs-common.hh hb-draw.hh \
+ hb-paint.hh hb-cff2-interp-cs.hh
+hb.hh:
+hb-config.hh:
+../config.h:
+hb-limits.hh:
+hb.h:
+hb-blob.h:
+hb-common.h:
+/usr/ppc-amigaos/SDK/newlib/include/inttypes.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdint.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/limits.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/syslimits.h:
+/usr/ppc-amigaos/SDK/newlib/include/limits.h:
+/usr/ppc-amigaos/SDK/newlib/include/newlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/syslimits.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/stddef.h:
+hb-buffer.h:
+hb-unicode.h:
+hb-font.h:
+hb-face.h:
+hb-map.h:
+hb-set.h:
+hb-draw.h:
+hb-paint.h:
+hb-deprecated.h:
+hb-shape.h:
+hb-shape-plan.h:
+hb-style.h:
+hb-version.h:
+hb-ot.h:
+hb-ot-color.h:
+hb-ot-name.h:
+hb-ot-deprecated.h:
+hb-ot-font.h:
+hb-ot-layout.h:
+hb-ot-math.h:
+hb-ot-meta.h:
+hb-ot-metrics.h:
+hb-ot-shape.h:
+hb-ot-var.h:
+hb-aat.h:
+hb-aat-layout.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cassert:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/c++config.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/os_defines.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/cpu_defines.h:
+/usr/ppc-amigaos/include/c++/11.3.0/pstl/pstl_config.h:
+/usr/ppc-amigaos/SDK/newlib/include/assert.h:
+/usr/ppc-amigaos/SDK/newlib/include/_ansi.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/config.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/ieeefp.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/features.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cfloat:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/float.h:
+/usr/ppc-amigaos/include/c++/11.3.0/climits:
+/usr/ppc-amigaos/include/c++/11.3.0/cmath:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/cpp_type_traits.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/type_traits.h:
+/usr/ppc-amigaos/SDK/newlib/include/math.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/reent.h:
+/usr/ppc-amigaos/SDK/newlib/include/_ansi.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/_types.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/lock.h:
+/usr/ppc-amigaos/SDK/newlib/include/setjmp.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/setjmp.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/resource.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/time.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/types.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/_types.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/types.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/select.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/timeb.h:
+/usr/ppc-amigaos/SDK/newlib/include/signal.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/signal.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/cdefs.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/std_abs.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/stdlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/alloca.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/specfun.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_algobase.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/functexcept.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/exception_defines.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/numeric_traits.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_pair.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/move.h:
+/usr/ppc-amigaos/include/c++/11.3.0/type_traits:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_iterator_base_types.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_iterator_base_funcs.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/concept_check.h:
+/usr/ppc-amigaos/include/c++/11.3.0/debug/assertions.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_iterator.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/ptr_traits.h:
+/usr/ppc-amigaos/include/c++/11.3.0/debug/debug.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/predefined_ops.h:
+/usr/ppc-amigaos/include/c++/11.3.0/limits:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/gamma.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/special_function_util.h:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/bessel_function.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/beta_function.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/ell_integral.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/exp_integral.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/hypergeometric.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/legendre_function.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/modified_bessel_func.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/poly_hermite.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/poly_laguerre.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/tr1/riemann_zeta.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/cstdarg:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/stdarg.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cstddef:
+/usr/ppc-amigaos/include/c++/11.3.0/cstdio:
+/usr/ppc-amigaos/SDK/newlib/include/stdio.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/stdio.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cstdlib:
+/usr/ppc-amigaos/include/c++/11.3.0/cstring:
+/usr/ppc-amigaos/SDK/newlib/include/string.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/string.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cerrno:
+/usr/ppc-amigaos/SDK/newlib/include/errno.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/errno.h:
+hb-cplusplus.hh:
+/usr/ppc-amigaos/include/c++/11.3.0/functional:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_function.h:
+/usr/ppc-amigaos/include/c++/11.3.0/backward/binders.h:
+/usr/ppc-amigaos/include/c++/11.3.0/new:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/exception.h:
+/usr/ppc-amigaos/include/c++/11.3.0/tuple:
+/usr/ppc-amigaos/include/c++/11.3.0/utility:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_relops.h:
+/usr/ppc-amigaos/include/c++/11.3.0/initializer_list:
+/usr/ppc-amigaos/include/c++/11.3.0/array:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/range_access.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/uses_allocator.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/invoke.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/functional_hash.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/hash_bytes.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/refwrap.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/std_function.h:
+/usr/ppc-amigaos/include/c++/11.3.0/typeinfo:
+/usr/ppc-amigaos/include/c++/11.3.0/unordered_map:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/allocator.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/c++allocator.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/new_allocator.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/memoryfwd.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/alloc_traits.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/alloc_traits.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_construct.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/aligned_buffer.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/hashtable.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/hashtable_policy.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/enable_special_members.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/node_handle.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/unordered_map.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/erase_if.h:
+/usr/ppc-amigaos/include/c++/11.3.0/vector:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_uninitialized.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_vector.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_bvector.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/vector.tcc:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_algo.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/algorithmfwd.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_heap.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_tempbuf.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/uniform_int_dist.h:
+hb-meta.hh:
+/usr/ppc-amigaos/include/c++/11.3.0/memory:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stl_raw_storage_iter.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/align.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bit:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/unique_ptr.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/shared_ptr.h:
+/usr/ppc-amigaos/include/c++/11.3.0/iosfwd:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/stringfwd.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/postypes.h:
+/usr/ppc-amigaos/include/c++/11.3.0/cwchar:
+/usr/ppc-amigaos/SDK/newlib/include/wchar.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/shared_ptr_base.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/allocated_ptr.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/atomicity.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/gthr.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/gthr-default.h:
+/usr/ppc-amigaos/include/c++/11.3.0/stdlib.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ppc-amigaos/bits/atomic_word.h:
+/usr/ppc-amigaos/include/c++/11.3.0/ext/concurrence.h:
+/usr/ppc-amigaos/include/c++/11.3.0/exception:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/exception_ptr.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/cxxabi_init_exception.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/nested_exception.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/shared_ptr_atomic.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/atomic_base.h:
+/usr/ppc-amigaos/include/c++/11.3.0/bits/atomic_lockfree_defines.h:
+/usr/ppc-amigaos/include/c++/11.3.0/backward/auto_ptr.h:
+/usr/ppc-amigaos/include/c++/11.3.0/pstl/glue_memory_defs.h:
+/usr/ppc-amigaos/include/c++/11.3.0/pstl/execution_defs.h:
+hb-mutex.hh:
+/usr/ppc-amigaos/SDK/include/include_h/proto/exec.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/utility.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/types.h:
+/usr/ppc-amigaos/SDK/include/include_h/amiga_compiler.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/libraries.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/nodes.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/lists.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/tagitem.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/data_structures.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/date.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/hooks.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/message_digest.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/name.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/pack.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/random.h:
+/usr/ppc-amigaos/SDK/include/include_h/interfaces/exec.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/exec.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/alerts.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/errors.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/initializers.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/memory.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/tasks.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/exectags.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/ports.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/resident.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/interrupts.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/semaphores.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/io.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/devices.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/execbase.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/interfaces.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/avl.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/debug.h:
+hb-number.hh:
+hb-atomic.hh:
+hb-null.hh:
+hb-algs.hh:
+/usr/ppc-amigaos/include/c++/11.3.0/algorithm:
+/usr/ppc-amigaos/include/c++/11.3.0/pstl/glue_algorithm_defs.h:
+hb-iter.hh:
+hb-debug.hh:
+hb-array.hh:
+hb-vector.hh:
+hb-object.hh:
+hb-ot-cff2-table.hh:
+hb-ot-cff-common.hh:
+hb-open-type.hh:
+hb-blob.hh:
+hb-face.hh:
+hb-shaper.hh:
+hb-machinery.hh:
+hb-dispatch.hh:
+hb-sanitize.hh:
+hb-shaper-list.hh:
+hb-shape-plan.hh:
+hb-ot-shape.hh:
+hb-ot-map.hh:
+hb-buffer.hh:
+hb-unicode.hh:
+hb-set-digest.hh:
+hb-aat-map.hh:
+hb-ot-face.hh:
+hb-ot-face-table-list.hh:
+hb-subset.hh:
+hb-subset.h:
+hb-serialize.hh:
+hb-map.hh:
+hb-set.hh:
+hb-bit-set-invertible.hh:
+hb-bit-set.hh:
+hb-bit-page.hh:
+hb-pool.hh:
+hb-subset-repacker.h:
+hb-subset-input.hh:
+hb-font.hh:
+hb-subset-instancer-solver.hh:
+hb-subset-plan.hh:
+hb-subset-accelerator.hh:
+hb-multimap.hh:
+hb-bimap.hh:
+hb-subset-plan-member-list.hh:
+hb-ot-layout-common.hh:
+hb-ot-layout.hh:
+OT/Layout/Common/Coverage.hh:
+OT/Layout/Common/../types.hh:
+OT/Layout/Common/CoverageFormat1.hh:
+OT/Layout/Common/CoverageFormat2.hh:
+OT/Layout/Common/RangeRecord.hh:
+OT/Layout/types.hh:
+hb-cff-interp-dict-common.hh:
+hb-cff-interp-common.hh:
+hb-subset-cff-common.hh:
+hb-cff-interp-cs-common.hh:
+hb-draw.hh:
+hb-paint.hh:
+hb-cff2-interp-cs.hh:
