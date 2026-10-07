@@ -2,6 +2,8 @@
     "files.associations": {
         "harfbuzz_vectors.h": "c",
         "hb.h": "c",
-        "hb-test.h": "c"
+        "hb-test.h": "c",
+        "hb-subset-repacker.h": "c",
+        "harfbuzz.h": "c"
     }
 }

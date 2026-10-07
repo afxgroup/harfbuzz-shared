@@ -25,7 +25,6 @@
 
 #include <interfaces/harfbuzz.h>
 #include <proto/exec.h>
-#include <assert.h>
 
 /****************************************************************************/
 
@@ -41,7 +40,6 @@ void harfbuzz_base_constructor(void)
         return; /* Someone was quicker, e.g. an interface constructor */
     }
     __HarfbuzzBase = HarfbuzzBase = (struct HarfbuzzLibrary *)IExec->OpenLibrary("harfbuzz.library", 54L);
-    assert(HarfbuzzBase != NULL);
 }
 __attribute__((section(".ctors.zzzz"))) static void (*harfbuzz_base_constructor_ptr)(void) USED = harfbuzz_base_constructor;
 

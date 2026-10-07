@@ -32,6 +32,9 @@
 #include <proto/exec.h>
 #include <proto/harfbuzz.h>
 
+struct FreetypeIFace *IFreetype = NULL;
+struct Library *FreetypeBase = NULL;
+
 /* Version Tag */
 #include "harfbuzz.library_rev.h"
 STATIC CONST UBYTE USED verstag[] = VERSTAG;
@@ -116,6 +119,16 @@ STATIC APTR libExpunge(struct LibraryManagerInterface *Self)
     	result = (APTR)libBase->segList;
         /* Undo what the init code did */
 
+        if (IFreetype)
+        {
+            IExec->DropInterface((struct Interface *) IFreetype);
+            IFreetype = NULL;
+        }
+        if (FreetypeBase)
+        {
+            IExec->CloseLibrary(FreetypeBase);
+            FreetypeBase = NULL;
+        }
 #ifdef __NEWLIB__
         if (INewlib)
         {
@@ -177,7 +190,17 @@ STATIC struct Library *libInit(struct Library *LibraryBase, APTR seglist, struct
                return NULL;
        } else return NULL; */
 
-       return (struct Library *)libBase;
+    FreetypeBase = IExec->OpenLibrary("freetype.library", 54L);
+    if (FreetypeBase)
+    {
+        IFreetype = (struct FreetypeIFace *)IExec->GetInterface(FreetypeBase, "main", 1, NULL);
+        if (!IFreetype)
+            return NULL;
+    } 
+    else 
+        return NULL;
+    
+    return (struct Library *)libBase;
 }
 
 /* ------------------- Manager Interface ------------------------ */

@@ -19,6 +19,7 @@
 #include <hb-aat.h>
 #include <hb-cairo.h>
 #include <hb-ft.h>
+#include <hb-icu.h>
 #include <hb-subset.h>
 #include <hb-subset-repacker.h>
 
@@ -561,5 +562,11 @@
 #define hb_version(major, minor, micro) IHarfbuzz->hb_version((major), (minor), (micro))
 #define hb_version_string() IHarfbuzz->hb_version_string()
 #define hb_version_atleast(major, minor, micro) IHarfbuzz->hb_version_atleast((major), (minor), (micro))
+#define hb_ucd_get_unicode_funcs() IHarfbuzz->hb_ucd_get_unicode_funcs()
+#ifdef ICU_ENABLED
+#define hb_icu_script_to_script(script) IHarfbuzz->hb_icu_script_to_script((script));
+#define hb_icu_script_from_script(script) IHarfbuzz->hb_icu_script_from_script((script));
+#define hb_icu_get_unicode_funcs() IHarfbuzz->hb_icu_get_unicode_funcs();   
+#endif
 
 #endif /* INLINE4_HARFBUZZ_H */

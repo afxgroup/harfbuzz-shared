@@ -4,6 +4,7 @@
 	<include>hb.h</include>
 	<include>hb-ft.h</include>
 	<include>hb-aat.h</include>
+	<include>hb-icu.h</include>
 	<include>hb-cairo.h</include>
     <include>hb-subset.h</include>
     <include>hb-subset-repacker.h</include>
@@ -2567,6 +2568,13 @@
 			<arg name="minor" type="unsigned int" />
 			<arg name="micro" type="unsigned int" />
 		</method>
-
+		<method name="hb_ucd_get_unicode_funcs" result="hb_unicode_funcs_t *" />
+		<method name="hb_icu_script_to_script" result="hb_script_t">
+			<arg name="script" type="UScriptCode" />
+		</method>
+		<method name="hb_icu_script_from_script" result="UScriptCode">
+			<arg name="script" type="hb_script_t" />
+		</method>
+		<method name="hb_icu_get_unicode_funcs" result="hb_unicode_funcs_t *" />
 	</interface>
 </library>

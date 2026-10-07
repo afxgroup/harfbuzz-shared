@@ -25,7 +25,6 @@
 
 #include <interfaces/harfbuzz.h>
 #include <proto/exec.h>
-#include <assert.h>
 
 struct HarfbuzzIFace *IHarfbuzz = NULL;
 static struct HarfbuzzLibrary * __HarfbuzzBase;
@@ -47,11 +46,9 @@ void harfbuzz_main_constructor(void)
          * we just open the library here which ensures that.
          */
         __HarfbuzzBase = HarfbuzzBase = (struct HarfbuzzLibrary *)IExec->OpenLibrary("harfbuzz.library", 54L);
-        assert(HarfbuzzBase != NULL);
     }
 
     __IHarfbuzz = IHarfbuzz = (struct HarfbuzzIFace *)IExec->GetInterface((struct Library *)HarfbuzzBase, "main", 1, NULL);
-    assert(IHarfbuzz != NULL);
 }
 __attribute__((section(".ctors.zzzy"))) static void
 (*harfbuzz_main_constructor_ptr)(void) USED = harfbuzz_main_constructor;

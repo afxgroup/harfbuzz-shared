@@ -11,6 +11,10 @@
 #include <hb-ft.h>
 #include <hb-subset.h>
 #include <hb-subset-repacker.h>
+#ifdef ICU_ENABLED
+#include <hb-icu.h>
+#include <unicode/uscript.h>
+#endif
 
 #include <stdarg.h>
 
@@ -2197,3 +2201,20 @@ hb_bool_t _impl_hb_version_atleast(struct HarfbuzzIFace *Self, unsigned int majo
 	return hb_version_atleast(major,minor,micro);
 }
 
+hb_unicode_funcs_t *_impl_hb_ucd_get_unicode_funcs(struct HarfbuzzIFace *Self) {
+	return hb_ucd_get_unicode_funcs();
+}
+
+#ifdef ICU_ENABLED
+hb_script_t _impl_hb_icu_script_to_script (struct HarfbuzzIFace *Self, UScriptCode script) {
+	return hb_icu_script_to_script(script);
+}
+
+UScriptCode _impl_hb_icu_script_from_script (struct HarfbuzzIFace *Self, hb_script_t script) {
+	return hb_icu_script_from_script(script);
+}
+
+hb_unicode_funcs_t * _impl_hb_icu_get_unicode_funcs (struct HarfbuzzIFace *Self) {
+	return hb_icu_get_unicode_funcs();
+}
+#endif

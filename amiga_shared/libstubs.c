@@ -11,6 +11,11 @@
 #include <hb-ft.h>
 #include <hb-subset.h>
 #include <hb-subset-repacker.h>
+#include <hb-unicode.hh>
+#ifdef ICU_ENABLED
+#include <hb-icu.h>
+#include <unicode/uscript.h>
+#endif
 
 unsigned int hb_aat_layout_get_feature_types(hb_face_t * face, unsigned int start_offset, unsigned int * feature_count, hb_aat_layout_feature_type_t * features) {
 	extern struct HarfbuzzIFace *IHarfbuzz;
@@ -3244,3 +3249,30 @@ hb_bool_t hb_version_atleast(unsigned int major, unsigned int minor, unsigned in
 
 	return IHarfbuzz->hb_version_atleast(major,minor,micro);
 }
+
+hb_unicode_funcs_t *hb_ucd_get_unicode_funcs(void) {
+	extern struct HarfbuzzIFace *IHarfbuzz;
+
+	return IHarfbuzz->hb_ucd_get_unicode_funcs();
+}
+
+#ifdef ICU_ENABLED
+hb_script_t hb_icu_script_to_script(UScriptCode script) {
+	extern struct HarfbuzzIFace *IHarfbuzz;
+
+	return IHarfbuzz->hb_icu_script_to_script(script);
+}
+
+UScriptCode hb_icu_script_from_script (hb_script_t script) {
+	extern struct HarfbuzzIFace *IHarfbuzz;
+
+	return IHarfbuzz->hb_icu_script_from_script(script);
+}
+
+
+hb_unicode_funcs_t *hb_icu_get_unicode_funcs (void) {
+	extern struct HarfbuzzIFace *IHarfbuzz;
+
+	return IHarfbuzz->hb_icu_get_unicode_funcs();
+}  
+#endif

@@ -553,5 +553,11 @@ STATIC CONST APTR main_v1_vectors[] =
     _impl_hb_version,
     _impl_hb_version_string,
     _impl_hb_version_atleast,
+    _impl_hb_ucd_get_unicode_funcs,
+#ifdef ICU_ENABLED
+    _impl_hb_icu_script_to_script,
+    _impl_hb_icu_script_from_script,
+    _impl_hb_icu_get_unicode_funcs,
+#endif
     (APTR)-1
 };

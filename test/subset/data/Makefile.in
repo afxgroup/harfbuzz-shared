@@ -141,10 +141,10 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_link_flag.m4 \
 	$(top_srcdir)/m4/ax_code_coverage.m4 \
 	$(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
-	$(top_srcdir)/m4/ax_pthread.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/ax_pthread.m4 $(top_srcdir)/m4/gtk-doc.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
@@ -500,12 +500,19 @@ GRAPHITE2_CFLAGS = @GRAPHITE2_CFLAGS@
 GRAPHITE2_DEPS = @GRAPHITE2_DEPS@
 GRAPHITE2_LIBS = @GRAPHITE2_LIBS@
 GREP = @GREP@
+GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
+GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
+GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
+GTKDOC_MKPDF = @GTKDOC_MKPDF@
+GTKDOC_REBASE = @GTKDOC_REBASE@
 HAVE_CXX11 = @HAVE_CXX11@
 HB_LIBTOOL_VERSION_INFO = @HB_LIBTOOL_VERSION_INFO@
 HB_VERSION = @HB_VERSION@
 HB_VERSION_MAJOR = @HB_VERSION_MAJOR@
 HB_VERSION_MICRO = @HB_VERSION_MICRO@
 HB_VERSION_MINOR = @HB_VERSION_MINOR@
+HTML_DIR = @HTML_DIR@
 ICU_CFLAGS = @ICU_CFLAGS@
 ICU_LIBS = @ICU_LIBS@
 INSTALL = @INSTALL@

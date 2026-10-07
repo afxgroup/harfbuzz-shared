@@ -13,6 +13,10 @@
 #include <hb-cairo.h>
 #include <hb-subset.h>
 #include <hb-subset-repacker.h>
+#ifdef ICU_ENABLED
+#include <hb-icu.h>
+#include <unicode/uscript.h>
+#endif
 
 
 /* forward declaration */
@@ -558,4 +562,9 @@ extern hb_bool_t VARARGS68K _impl_hb_unicode_decompose(struct HarfbuzzIFace *, h
 extern void VARARGS68K _impl_hb_version(struct HarfbuzzIFace *, unsigned int * major, unsigned int * minor, unsigned int * micro);
 extern const char * VARARGS68K _impl_hb_version_string(struct HarfbuzzIFace *);
 extern hb_bool_t VARARGS68K _impl_hb_version_atleast(struct HarfbuzzIFace *, unsigned int major, unsigned int minor, unsigned int micro);
-
+extern hb_unicode_funcs_t * VARARGS68K hb_ucd_get_unicode_funcs(struct HarfbuzzIFace *);
+#ifdef ICU_ENABLED
+extern hb_script_t VARARGS68K _impl_hb_icu_script_to_script (struct HarfbuzzIFace *, UScriptCode script);
+extern UScriptCode VARARGS68K _impl_hb_icu_script_from_script (struct HarfbuzzIFace *, hb_script_t script);
+extern hb_unicode_funcs_t * VARARGS68K _impl_hb_icu_get_unicode_funcs (struct HarfbuzzIFace *); 
+#endif

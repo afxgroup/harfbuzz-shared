@@ -19,12 +19,12 @@ RM     = rm -Rf
 CP	   = cp
 
 # Change these as required
-OPTIMIZE = -O2 -DHB_EXPERIMENTAL_API=1 -Wno-deprecated-declarations -Wfatal-errors
+OPTIMIZE = -O2 -DHB_EXPERIMENTAL_API=1 -Wno-deprecated-declarations -Wno-missing-declarations -Wfatal-errors
 DEBUG    = -gstabs # -DDEBUG
 CFLAGS   = -I. -Iinclude -I../src/ -I/usr/ppc-amigaos/SDK/local/common/include/cairo/ -I/usr/ppc-amigaos/SDK/local/common/include/freetype2 -Wall $(AMIGA_CFLAGS) $(OPTIMIZE) $(DEBUG)
 
 # Flags passed to gcc during linking
-LINK = -gstabs
+LINK = -gstabs -athread=native
 
 # Name of the "thing" to build
 TARGET = harfbuzz.library
@@ -47,7 +47,7 @@ all: compilelib libharfbuzz.a $(TARGET)
 
 # Rules for building
 $(TARGET): $(OBJS)
-	$(CC) $(LINK) -nostartfiles -o $@.debug $(OBJS) $(LIBS) -Wl,-L.,--cref,-M,-Map=$@.debug.map
+	$(CC) $(LINK) -nostartfiles -o $@.debug $(OBJS) $(LIBS) -Wl,--no-undefined -Wl,-L.,--cref,-M,-Map=$@.debug.map
 	$(STRIP) -R.comment $@.debug -o $@
 
 libharfbuzz.a: $(LINKOBJS)
@@ -57,9 +57,9 @@ compilelib:
 	$(RM) $(TARGET) $(TARGET).debug*
 ifeq (,$(wildcard ../lib/.libs/libharfbuzz.a))
 ifeq (,$(wildcard ../configure))
-	cd ..; ./configure --prefix=$(shell pwd)/SDK --host=ppc-amigaos --disable-shared --with-glib=no --with-icu=no --with-cairo=yes --with-freetype=yes --with-freetype=yes CPPFLAGS="-DHB_EXPERIMENTAL_API=1"; cd amiga_shared;
+	cd ..; ./configure --prefix=$(shell pwd)/amiga_shared/SDK --host=ppc-amigaos --disable-shared --with-glib=no --with-icu=no --with-cairo=yes --with-freetype=yes --with-freetype=yes CPPFLAGS="-gstabs -DHB_EXPERIMENTAL_API=1"; cd amiga_shared;
 endif
-	cd ..; make && make install; cd amiga_shared;
+	cd ..; make; cd amiga_shared;
 endif
 
 .PHONY: clean
@@ -70,3 +70,6 @@ clean:
 .PHONY: revision
 revision:
 	bumprev $(VERSION) $(TARGET)
+
+install:
+	cd ..; make install; cd amiga_shared;

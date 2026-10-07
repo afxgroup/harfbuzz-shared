@@ -16,8 +16,10 @@
 #include <hb-aat.h>
 #include <hb-cairo.h>
 #include <hb-ft.h>
+#include <hb-icu.h>
 #include <hb-subset.h>
 #include <hb-subset-repacker.h>
+#include <unicode/uscript.h>
 
 #ifdef __cplusplus
 #ifdef __USE_AMIGAOS_NAMESPACE__
@@ -572,6 +574,12 @@ struct HarfbuzzIFace
 	void APICALL (*hb_version)(struct HarfbuzzIFace *Self, unsigned int * major, unsigned int * minor, unsigned int * micro);
 	const char * APICALL (*hb_version_string)(struct HarfbuzzIFace *Self);
 	hb_bool_t APICALL (*hb_version_atleast)(struct HarfbuzzIFace *Self, unsigned int major, unsigned int minor, unsigned int micro);
+	hb_unicode_funcs_t * APICALL (*hb_ucd_get_unicode_funcs)(struct HarfbuzzIFace *Self);
+#ifdef ICU_ENABLED
+	hb_script_t APICALL (*hb_icu_script_to_script)(struct HarfbuzzIFace *Self, UScriptCode script);
+	UScriptCode APICALL (*hb_icu_script_from_script)(struct HarfbuzzIFace *Self, hb_script_t script);
+	hb_unicode_funcs_t * APICALL (*hb_icu_get_unicode_funcs)(struct HarfbuzzIFace *Self);   
+#endif
 };
 
 #ifdef __cplusplus
